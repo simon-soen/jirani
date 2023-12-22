@@ -9,6 +9,7 @@ const useFetch = () => {
 
 
     const fetchData = async () => {
+        const SERVER_URL = process.env.SERVER_URL;
         setIsLoading(true)
 
 

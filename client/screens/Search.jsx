@@ -6,7 +6,6 @@ import {Feather, Ionicons} from "@expo/vector-icons";
 import {SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 import SearchTile from "../components/product/SearchTile";
-import { SERVER_URL } from 'react-native-dotenv';
 
 const Search = () => {
   const [searchKey, setSearchKey] = useState(''); 
@@ -16,6 +15,7 @@ const Search = () => {
 
   //http://192.168.0.109:3000/api/products/search/${searchKey}
   const handleSearch = async () => {
+    const SERVER_URL = process.env.SERVER_URL;
     try {
       const response = await axios.get(`${SERVER_URL}/products/search/${searchKey}`);
 

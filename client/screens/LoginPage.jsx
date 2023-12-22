@@ -10,7 +10,7 @@ import { COLORS } from "../constants";
 import { Alert } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SERVER_URL } from 'react-native-dotenv';
+
 
 const validationSchema = Yup.object().shape({
 
@@ -45,6 +45,7 @@ const LoginPage = ({navigation}) => {
       };
 
       const login = async (values) => {
+        const SERVER_URL = process.env.SERVER_URL;
         setLoader(true)
 
 

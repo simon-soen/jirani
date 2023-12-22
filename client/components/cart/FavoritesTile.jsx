@@ -6,7 +6,6 @@ import { COLORS, SIZES } from "../../constants";
 import styles from "../product/searchTile.style";
 import { useNavigation } from "@react-navigation/native";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
-import { SERVER_URL } from 'react-native-dotenv';
 
 const FavoriteTile = () => {
     const [userId, setUserId] = useState(null);
@@ -31,6 +30,7 @@ const FavoriteTile = () => {
     }, []);
    
     const getfavItems = async (userId) => {
+        const SERVER_URL = process.env.SERVER_URL;
         try {
             if (!userId) {
                 return;

@@ -9,7 +9,6 @@ import  {MaterialCommunityIcons, Ionicons} from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
 import { Alert } from "react-native";
 import axios from "axios";
-import { SERVER_URL } from 'react-native-dotenv';
 
 const validationSchema = Yup.object().shape({
 
@@ -48,6 +47,7 @@ const validationSchema = Yup.object().shape({
     };
 
   const registerUser = async (values) => {
+    const SERVER_URL = process.env.SERVER_URL;
     setLoader(true);
 
     try{

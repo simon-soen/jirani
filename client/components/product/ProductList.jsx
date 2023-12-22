@@ -4,9 +4,9 @@ import useFetch from "../../hook/useFetch";
 import { COLORS, SIZES } from "../../constants";
 import styles from "./productList.style";
 import ProductCardView from "./productCardView";
-import { SERVER_URL } from 'react-native-dotenv';
 
 const ProductList = () => {
+  const SERVER_URL = process.env.SERVER_URL;
   const { data, isLoading, error } = useFetch(`${SERVER_URL}/api/products`);
   console.log("Data:", data);
     console.error("Error:", error);

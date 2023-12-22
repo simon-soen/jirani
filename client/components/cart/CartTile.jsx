@@ -5,7 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS, SIZES } from "../../constants";
 import styles from "../product/searchTile.style";
 import { useNavigation } from "@react-navigation/native";
-import { SERVER_URL } from 'react-native-dotenv';
 
 const CartTile = () => {
     const [userId, setUserId] = useState(null);
@@ -28,6 +27,7 @@ const CartTile = () => {
     }, []);
     
     const getCartItems = async (userId) => {
+        const SERVER_URL = process.env.SERVER_URL;
         try {
             if (!userId) {
                 return;
