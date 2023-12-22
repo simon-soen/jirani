@@ -6,7 +6,7 @@ import styles from "./productRow.style";
 import useFetch from "../../hook/useFetch";
 
 const ProductRow = () => {
-  const SERVER_URL = process.env.SERVER_URL;
+  const SERVER_URL = "https://jirani-bebe9d207799.herokuapp.com";
   const { data, isLoading, error } = useFetch(`${SERVER_URL}/api/products`);
   
   console.log("Data:", data);
