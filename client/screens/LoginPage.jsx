@@ -45,7 +45,7 @@ const LoginPage = ({navigation}) => {
       };
 
       const login = async (values) => {
-        const SERVER_URL = process.env.SERVER_URL;
+        const SERVER_URL = "https://jirani-bebe9d207799.herokuapp.com";
         setLoader(true)
 
 
