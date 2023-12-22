@@ -40,7 +40,7 @@ const Home = ({navigation}) => {
   };
 
   return ( 
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons name="location-outline" size={24}/>
@@ -61,8 +61,8 @@ const Home = ({navigation}) => {
 
         </View>
       </View> 
-      <ScrollView>
-        <Welcome />
+      <ScrollView style={{ flexGrow: 1}}>
+        <Welcome style={{ minHeight: 600, borderWidth: 1, borderColor: 'red' }}/>
         <Carousel/>
         <Headings/> 
         <ProductRow/>
