@@ -6,7 +6,7 @@ export const addToCart = async (cartItem, quantity) => {
     const userId = await AsyncStorage.getItem('id');
 
     // Make a POST request to the server's /api/cart/add/:id endpoint
-    const response = await fetch(`http://192.168.0.109:3000/api/cart/add/${userId.replace(/"/g, '')}`, {
+    const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/cart/add/${userId.replace(/"/g, '')}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
