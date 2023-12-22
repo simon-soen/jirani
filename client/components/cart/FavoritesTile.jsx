@@ -29,7 +29,7 @@ const FavoriteTile = () => {
     }, []);
    
     const getfavItems = async (userId) => {
-        const SERVER_URL = process.env.SERVER_URL;
+        const SERVER_URL = "https://jirani-bebe9d207799.herokuapp.com";
         try {
             if (!userId) {
                 return;
