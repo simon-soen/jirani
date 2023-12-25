@@ -16,8 +16,38 @@ const AddProuct = ({navigation}) => {
   const [description, setDescription] = useState('');
   const [ product_location, setProductLocation] = useState('');
   const [category, setCategory] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
   
+  const  selectImage = async () => {
+    try {
+      const response = await ImagePicker.launchImageLibraryAsync();
+      console.log(response);
+      if (response.cancelled) {
+        return;
+      }
+      setSelectedImage({ localUri: response.uri });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const uploadImage = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body: JSON.stringify({
+          image: selectedImage,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const createProduct = async () => {
   
@@ -71,8 +101,12 @@ const AddProuct = ({navigation}) => {
                   {selectedImage && (
                     <Image source={selectedImage} style={{ width: 200, height: 200 }} />
                   )}
-                  <Button title="Select Image" onPress={selectImage} />
-                  <Button title="Upload Image" onPress={uploadImage} />
+                  <Button title="Select Image" 
+                  onPress={selectImage}
+                   />
+                  <Button title="Upload Image" 
+                  onPress={uploadImage} 
+                  />
                 </View>
 
                 <View style={styles.wrapper}>
