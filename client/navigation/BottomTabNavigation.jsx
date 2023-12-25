@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Home, Search, Profile} from '../screens/index';
+import {Home, Search, Profile, AddProduct} from '../screens/index';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../constants/index';
 
@@ -75,7 +75,28 @@ const BottomTabNavigation = () => {
           }}
         />  
 
+        <Tab.Screen
+            name="AddProduct"
+            component={AddProduct}
+            options={{
+              tabBarIcon: ({focused}) => {
+                return(
+                  <Ionicons 
+                    name={focused ? "cash" : "cash-outline"}
+                    size={24}
+                    color={focused ? COLORS.primary : COLORS.gray2}
+                  />
+                );
+              },
+            }}
+        
+        
+        
+        
+        />
+
     </Tab.Navigator>
+    
   );
 }
 

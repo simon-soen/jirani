@@ -1,13 +1,25 @@
-import { FlatList, Text, View, ActivityIndicator } from "react-native";
+import { FlatList, Text, View, ActivityIndicator, Dimensions } from "react-native";
 import React from "react";
 import { SIZES, COLORS } from "../../constants";
 import ProductCardView from "./productCardView";
 import styles from "./productRow.style";
 import useFetch from "../../hook/useFetch";
 
+
+
+
+
+const windowWidth = Dimensions.get('window').width;
+const itemWidth = 182 ; 
+
+const calculateNumColumns = () => {
+  const numColumns = Math.floor(windowWidth / itemWidth);
+  return numColumns > 0 ? numColumns : 1;
+};
+
+
 const ProductRow = () => {
-  const SERVER_URL = "https://jirani-bebe9d207799.herokuapp.com";
-  const { data, isLoading, error } = useFetch(`${SERVER_URL}/api/products`);
+  const { data, isLoading, error } = useFetch('http://localhost:3000/api/products');
   
   console.log("Data:", data);
   console.log("isLoading:", isLoading);
@@ -22,7 +34,7 @@ const ProductRow = () => {
           data={data}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <ProductCardView item={item} />}
-          horizontal
+          numColumns={calculateNumColumns()}
           contentContainerStyle={{ columnGap: SIZES.medium }}
         />
       )}

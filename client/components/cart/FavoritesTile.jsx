@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS, SIZES } from "../../constants";
 import styles from "../product/searchTile.style";
 import { useNavigation } from "@react-navigation/native";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const FavoriteTile = () => {
     const [userId, setUserId] = useState(null);
@@ -29,12 +30,11 @@ const FavoriteTile = () => {
     }, []);
    
     const getfavItems = async (userId) => {
-        const SERVER_URL = "https://jirani-bebe9d207799.herokuapp.com";
         try {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`${SERVER_URL}/api/favourite/find/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`http://192.168.0.109:3000/api/favourite/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
             
             console.log('Fetched data:', data);

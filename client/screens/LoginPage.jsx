@@ -45,12 +45,11 @@ const LoginPage = ({navigation}) => {
       };
 
       const login = async (values) => {
-        const SERVER_URL = "https://jirani-bebe9d207799.herokuapp.com";
         setLoader(true)
 
 
         try{
-            const endpoint =`${SERVER_URL}/api/login/`
+            const endpoint ="http://192.168.0.109:3000/api/login/"
             const data = values;
 
             const response = await axios.post(endpoint, data);
@@ -92,17 +91,119 @@ const LoginPage = ({navigation}) => {
 
 
     return (
-        <ScrollView>
-           <SafeAreaView style={{marginHorizontal: 20}}>
-                <View style={{marginTop: 20}}>
+       
+           <SafeAreaView style={{}}>
+                <View style={{backgroundColor:COLORS.beige}}>
                     <BackBtn onPress={() => navigation.goBack()} />
-                    <Image
+                    {/* <Image
                         source={require("../assets/images/bk.png")}
                         style={styles.cover}
-                    />
-
-                    <Text style={styles.title}>Unlimited Freedom to Sell & Buy</Text>
+                    /> */}
                     <Formik
+                        initialValues={{email: "", password: ""}}
+                        validationSchema={validationSchema}
+                        onSubmit={values => login(values)}
+                    >
+
+                        {({ handleChange, handleBlur, handleSubmit, touched, values, errors, isValid, setFieldTouched }) => (
+                         
+
+                <View>
+                    <View style={styles.cover}>
+                        <View style={{marginHorizontal:20}}>
+                         <Text style={styles.title} >Sign In</Text>
+                        
+                         <View style={styles.wrapper}>
+                                    <Text style={styles.label}>Email</Text>
+                                    <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
+                                        <MaterialCommunityIcons
+                                            name="email-outline"  
+                                            size={24}
+                                            color={COLORS.gray}
+                                            style={styles.iconStye}
+
+                                        />
+ 
+                                        <TextInput
+                                            placeholder="Enter your email"
+                                            onFocus={() => {setFieldTouched('email')}}
+                                            onBlur={()=> {setFieldTouched('email', "")}}
+                                            value={values.email}
+                                            onChangeText={handleChange("email")}
+                                            autoCapitalize="none"
+                                            autoCorrect={false}
+                                            style={{flex:1}}
+                                        />
+                                    </View>
+                                    {touched.email && errors.email && (
+                                        <Text style={styles.errorMessage}>{errors.email}</Text>
+                                    )}
+                                </View>
+
+                                <View style={styles.wrapper}>
+                                    <Text style={styles.label}>Password</Text>
+                                    <View style={styles.inputWrapper(touched.password ? COLORS.secondary: COLORS.offwhite)}>
+                                        <MaterialCommunityIcons
+                                            name="lock-outline"  
+                                            size={24}
+                                            color={COLORS.gray}
+                                            style={styles.iconStye}
+
+                                        />
+ 
+                                        <TextInput
+                                            secureTextEntry={!obsecureText}
+                                            placeholder="Password"
+                                            onFocus={() => {setFieldTouched('password')}}
+                                            onBlur={()=> {setFieldTouched('password', "")}}
+                                            value={values.password}
+                                            onChangeText={handleChange("password")}
+                                            autoCapitalize="none"
+                                            autoCorrect={false}
+                                            style={{flex:1}}
+                                        />
+
+                                        <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
+                                            <MaterialCommunityIcons 
+                                                name={obsecureText? "eye-outline" : "eye-off-outline"}
+                                                size={18}
+                                            />
+                                        </TouchableOpacity>
+
+                                    </View>
+                                    {touched.password && errors.password && (
+                                        <Text style={styles.errorMessage}>{errors.password}</Text>
+                                    )}
+                                    </View>
+                        </View>
+                        
+                    </View>
+                    <View style={styles.middle}>
+                        <Button 
+                            loader={loader}
+                            title={"L O G I N"} 
+                            onPress={isValid ?handleSubmit: inValidForm} 
+                            isValid={isValid}
+                            /> 
+
+                    </View>
+
+                    <View style={styles.bottom}>
+                        <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
+                    </View>
+
+                </View>
+
+
+
+
+                    )}
+                       
+
+                    </Formik> 
+
+                    {/* <Text style={styles.title}>Unlimited Freedom to Sell & Buy</Text> */}
+                    {/* <Formik
                         initialValues={{email: "", password: ""}}
                         validationSchema={validationSchema}
                         onSubmit={values => login(values)}
@@ -185,12 +286,13 @@ const LoginPage = ({navigation}) => {
                             )}
                        
 
-                    </Formik>
+                    </Formik> */}
                  </View>
            </SafeAreaView>
-        </ScrollView>
+        
     );
 
 };
 
 export default LoginPage;
+

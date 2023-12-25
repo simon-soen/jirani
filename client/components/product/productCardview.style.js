@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.secondary,
         borderRadius: SIZES.medium,
         marginRight: SIZES.small,
+        marginBottom: SIZES.small,
+        marginHorizontal: SIZES.small/1.5,
         
     },
 

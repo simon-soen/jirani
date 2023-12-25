@@ -27,12 +27,11 @@ const CartTile = () => {
     }, []);
     
     const getCartItems = async (userId) => {
-        const SERVER_URL ="https://jirani-bebe9d207799.herokuapp.com";
         try {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`${SERVER_URL}/api/cart/find/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`http://192.168.0.109:3000/api/cart/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
     
             console.log('Fetched data:', data);
@@ -89,4 +88,5 @@ const CartTile = () => {
 };
 
 export default CartTile;
+
 

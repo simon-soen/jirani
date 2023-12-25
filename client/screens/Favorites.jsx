@@ -25,3 +25,4 @@ const Favorites = ({navigation}) => {
 }
 
 export default Favorites;
+

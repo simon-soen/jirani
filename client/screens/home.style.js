@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import {COLORS } from "react-native/Libraries/NewAppScreen";
 import { SIZES } from "../constants";
 
 

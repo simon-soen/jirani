@@ -3,28 +3,24 @@ import { SIZES, COLORS } from '../constants';
 
 const styles = StyleSheet.create({
     cover:{
-        height:SIZES.height/2.5,
-        width:SIZES.width,
-        resizeMode:'contain',
-      
-        backgroundColor:COLORS.darkblue
-    },
-    middle:{
-        height:SIZES.height/2.3,
+        height:SIZES.height/1.35,
         width:SIZES.width,
         resizeMode:'contain',
         backgroundColor:COLORS.darkblue,
-        borderBottomLeftRadius: SIZES.height/2.3,
+        borderBottomLeftRadius:SIZES.xxLarge,
+        borderBottomRightRadius:SIZES.xxLarge,
+    },
+
+
+    bottom:{
+        height:SIZES.height - (SIZES.height / 1.35),
+        width:SIZES.width,
+        resizeMode:'contain',
+        // backgroundColor:COLORS.darkblue,
+        
         
     },
-    bottom:{
-        height: SIZES.height - (SIZES.height / 2.5) - (SIZES.height / 2.4),
-        width:SIZES.width/2,
-        resizeMode:'contain',
-        marginBottom:SIZES.xxLarge,
-        backgroundColor:COLORS.darkblue,
-        borderTopRightRadius:SIZES.height - (SIZES.height / 2.5) - (SIZES.height / 2.4),
-    },
+ 
 
     title: {
         fontFamily:'bold',

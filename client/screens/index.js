@@ -8,6 +8,7 @@ import LoginPage from "./LoginPage";
 import Orders from "./Orders";
 import Favorites from "./Favorites";
 import SignUp from "./SignUp";
+import AddProduct from "./AddProduct";
 
 
 
@@ -21,5 +22,6 @@ export {
     LoginPage,
     Orders,
     Favorites,
-    SignUp
+    SignUp,
+    AddProduct
 };

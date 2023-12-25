@@ -7,6 +7,7 @@ import {SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 import SearchTile from "../components/product/SearchTile";
 
+
 const Search = () => {
   const [searchKey, setSearchKey] = useState(''); 
   const [searchResult, setSearchResult] = useState([]);
@@ -15,9 +16,8 @@ const Search = () => {
 
   //http://192.168.0.109:3000/api/products/search/${searchKey}
   const handleSearch = async () => {
-    const SERVER_URL = "https://jirani-bebe9d207799.herokuapp.com";
     try {
-      const response = await axios.get(`${SERVER_URL}/products/search/${searchKey}`);
+      const response = await axios.get(`http://192.168.0.109:3000/api/products/search/${searchKey}`);
 
       setSearchResult(response.data);
 

@@ -1,4 +1,4 @@
-import { TouchableOpacity,View, Text, Image} from "react-native";
+import { TouchableOpacity,View, Text, Image, ScrollView} from "react-native";
 import React, {useState}from "react";
 import { useRoute } from "@react-navigation/native";
 import styles from "./productDetails.styles";
@@ -6,6 +6,7 @@ import {Ionicons, SimpleLineIcons, MaterialCommunityIcons, Fontisto} from "@expo
 import { addToCart } from "../components/cart/CartUtils";
 import { addToFav } from "../components/cart/FavUtils";
 import { Alert } from "react-native";
+import { COLORS } from "../constants";
 
 const ProductDetails = ({navigation}) => {
   const route = useRoute();
@@ -56,7 +57,7 @@ const ProductDetails = ({navigation}) => {
        }
     } else {
        console.log('Server returned an error with status:', response.status);
-       Alert.alert('Error', 'There was an error adding the product to favorites.');
+       Alert.alert('Error', 'You are not logged in');
        // Handle other error cases in the UI
     }
  
@@ -89,8 +90,26 @@ const ProductDetails = ({navigation}) => {
         <View style={styles.details}>
             <View style={styles.titleRow}>
                 <Text style={styles.title}>{item.title}</Text>
-                <View style={styles.priceWrapper}>
-                <Text style={styles.price}>ksh{item.price}</Text>
+                <View style={styles.rating}>
+
+                <TouchableOpacity  style={{color: COLORS.darkblue}} onPress={() =>decrement( )}>
+                        <SimpleLineIcons 
+                        name='minus' 
+                        size={20 }
+                        // style={{color: COLORS.lightWhite}}
+                        />
+                    </TouchableOpacity>
+
+                    <Text style={styles.ratingText}> {count} </Text>
+
+                    <TouchableOpacity onPress={() =>increment()}>
+                        <SimpleLineIcons 
+                        name='plus' 
+                        size={20 }/>
+                    </TouchableOpacity>
+
+                  
+
                 </View>
             </View>
             <View style={styles.ratingRow}>  
@@ -106,55 +125,52 @@ const ProductDetails = ({navigation}) => {
 
                 </View>
 
-                <View style={styles.rating}>
-                    <TouchableOpacity onPress={() =>increment()}>
-                        <SimpleLineIcons 
-                        name='plus' 
-                        size={20 }/>
-                    </TouchableOpacity>
-
-                    <Text style={styles.ratingText}> {count} </Text>
-
-                    <TouchableOpacity onPress={() =>decrement( )}>
-                        <SimpleLineIcons 
-                        name='minus' 
-                        size={20 }/>
-                    </TouchableOpacity>
-                </View>
+               
              </View> 
 
-             <View style={styles.descriptionWrapper}>
+             <ScrollView style={styles.descriptionWrapper}>
                 <Text style={styles.description}> Description</Text>
                 <Text style={styles.descriptionText}>
                     {item.description}
                 </Text>
-            </View> 
-
+            </ScrollView> 
+            </View>
             <View style={styles.locationWrapper}>
+               
                 <View style={styles.Location}>
-                    <View style={styles.locationWrap}>
+
+                <Text style={styles.similar}>Similar Products</Text>
+                    {/* <View style={styles.locationWrap}>
                         <Ionicons name='location-outline' size={20}/>
                         <Text>{item.pronduct_location}</Text> 
                     </View>
-
-                    <View style={styles.locationWrap}>
-                        <MaterialCommunityIcons name='truck-delivery' size={20}/>
-                        <Text>Free Delivery</Text> 
-                    </View>  
+                        
+                      */}
                 </View>
             </View>
-
+          
             <View style={styles.cartRow}>
-                <TouchableOpacity onPress={()=>handleAddToCart()} style={styles.cartBtn}>
-                    <Text style={styles.cartTitle}>BUY NOW</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={()=>handleAddToCart()} style={styles.addCart}>
-                    <Fontisto style={styles.fonti}  name='shopping-bag' size={22}/>
-                </TouchableOpacity>
+                <View>
+                    <Text style={styles.price}>ksh {item.price}</Text>
+                    <View style={styles.locationWrap}>
+                        <Text style={{color:COLORS.lightWhite}}>Free Delivery</Text> 
+                        <MaterialCommunityIcons style={{color:COLORS.lightWhite, marginHorizontal:20}} name='truck-delivery' size={20}/>
+                      
+                    </View>
+                </View>
+                <View style={styles.buyBtn}>
+                    <TouchableOpacity onPress={()=>handleAddToCart()} style={styles.addCart}>
+                        <Fontisto style={styles.fonti}  name='shopping-bag' size={23}/> 
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>handleAddToCart()} style={styles.cartBtn}>
+                        <Text style={styles.cartTitle}>BUY NOW</Text>
+                    </TouchableOpacity>
+                </View>
+              
             </View>
-        </View>
+        
     </View>
+    
   )
 }
 

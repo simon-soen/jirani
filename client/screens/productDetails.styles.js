@@ -4,7 +4,7 @@ import { SIZES, COLORS } from "../constants";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:COLORS.lightWhite
+        backgroundColor:COLORS.darkblue
       },
 
     upperRow:{
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
        },
 
        heart:{
-        color:COLORS.primary,
+        color:COLORS.red,
        },
 
       image:{
@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
         marginTop: -SIZES.large,
         backgroundColor:COLORS.lightWhite,
         width:SIZES.width,
-        borderTopLeftRadius: SIZES.medium,
-        borderTopRightRadius: SIZES.medium,
+       
        },
 
        titleRow:{
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
 
        title:{
         fontFamily:"bold",
-        fontSize:SIZES.large
+        fontSize:SIZES.xxLarge/1.4,
 
        },
        
@@ -58,10 +57,10 @@ const styles = StyleSheet.create({
        },
 
        price:{
-        padding:10,
+        marginHorizontal: 20,
         fontFamily:"semibold",
-        fontSize:SIZES.large
-
+        fontSize:SIZES.large*1.4,
+        color:COLORS.lightWhite
        },
 
       ratingRow:{
@@ -88,9 +87,12 @@ const styles = StyleSheet.create({
           paddingHorizontal:SIZES.small
         },
 
+        
+
        descriptionWrapper:{
         marginTop:SIZES.large+2,
-        marginHorizontal:SIZES.large
+        marginHorizontal:SIZES.large,
+        height: SIZES.height * 0.2,
        },
 
        description:{
@@ -115,47 +117,78 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:"space-between",
         alignItems: 'center',
-        backgroundColor:COLORS.secondary,
+        backgroundColor:COLORS.lightWhite,
         padding:5,
-        borderRadius:SIZES.large,
+        borderBottomLeftRadius:SIZES.xLarge,
+        borderBottomRightRadius:SIZES.xLarge,
         margginHorizontal:12
        },
 
        locationWrap:{
         flexDirection: 'row',
+        marginHorizontal: SIZES.large,  
+       
        },
 
        cartRow:{
         paddingBottom: SIZES.small,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         width:SIZES.width ,
+        top:20,
        },
 
+        similar :{
+          fontFamily:"bold",
+          fontSize:SIZES.large*1.5,
+          marginHorizontal:SIZES.large,
+        },
+
+        buyBtn:{
+          flexDirection:"row",
+          alignItems:"center",
+          justifyContent:"center",
+          width:SIZES.width*0.54,
+          backgroundColor:COLORS.lightWhite,
+          height:SIZES.xxLarge*1.3,
+          borderRadius:SIZES.large,
+          margin:12,
+      
+        },
+
        cartBtn:{
-        width:SIZES.width*0.7,
-        backgroundColor:COLORS.black,
-        padding:SIZES.small/2,
-        borderRadius:SIZES.large,
-        marginLeft:12
+        width:SIZES.width*0.4,
+        
+       
+        
        },
 
        cartTitle:{
         fontFamily:"bold",
-        fontSize:SIZES.medium,
-        color:COLORS.lightWhite,
-        marginLeft:SIZES.small
+        fontSize:22,
+        color:COLORS.darkblue,
+        backgroundColor:COLORS.lightWhite,
+        borderBottomRightRadius:SIZES.large,
+        borderTopRightRadius:SIZES.large,
+        borderColor:COLORS.darkblue,
+        borderWidth: 1, 
+        marginLeft:SIZES.small/5,
+        padding: 10,
+        paddingHorizontal:SIZES.large,
        },
 
+       
+
        addCart:{
-        width:37,
-        height:37,
-        borderRadius:15,
-        margin:SIZES.small,
-        backgroundColor:COLORS.black,
+        width:57,
+        height:57,
+        backgroundColor:COLORS.darkblue,
         alignItems:"center",
-        justifyContent:"center"
+        justifyContent:"center",
+        borderWidth: 1,
+        borderColor: COLORS.white , 
+        borderBottomLeftRadius:SIZES.large,
+        borderTopLeftRadius:SIZES.large,
        },
 
        fonti:{

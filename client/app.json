@@ -26,13 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler": "metro"
+      "bundler":"metro"
     },
     "extra": {
       "eas": {
-        "projectId": "5043afb6-e143-487f-ab90-19478f27d234"
+        "projectId": "b115063a-e4a1-4e5a-94a9-c43dbdb0fc5b"
       }
-    },
-    "owner": "simon9141"
+    }
   }
 }

@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import BottomTabNavigation from './navigation/BottomTabNavigation';
-import {Cart, NewRivals, ProductDetails, LoginPage, Orders, Favorites, SignUp} from './screens';
+import {Cart, NewRivals, ProductDetails, LoginPage, Orders, Favorites, SignUp, AddProduct} from './screens';
 import { ReactNode } from 'react';
 
 
@@ -82,9 +82,15 @@ export default function App() {
         options={{headerShown:false }}
       />  
 
-<Stack.Screen 
+      <Stack.Screen 
         name="SignUp" 
         component={SignUp}
+        options={{headerShown:false }}
+      /> 
+
+      <Stack.Screen 
+        name="AddProduct" 
+        component={AddProduct}
         options={{headerShown:false }}
       /> 
 

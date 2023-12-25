@@ -6,6 +6,7 @@ const COLORS = {
   primary: "#2A4D50",
   secondary: "#DDF0FF",
   tertiary: "#FF7754",
+  words: "#ffffff",
 
   gray: "#83829A",
   gray2: "#C1C0C8",
@@ -16,6 +17,8 @@ const COLORS = {
   red: "#e81e4d",
   green: " #00C135",
   lightWhite: "#FAFAFC",
+  darkblue: "#1f1f60",
+  beige: "#f5f5dc"
 };
 
 

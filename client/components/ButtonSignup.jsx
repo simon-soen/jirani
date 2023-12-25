@@ -2,11 +2,11 @@ import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator } from "rea
 import React from "react";
 import { COLORS, SIZES } from "../constants";
 
-const Button = ({title, onPress, isValid, loader}) => {
+const ButtonSignup = ({title, onPress, isValid, loader}) => {
   return (
     <TouchableOpacity 
         onPress={onPress} 
-        style={styles.btnStyle(isValid ===false? COLORS.gray: COLORS.white)}
+        style={styles.btnStyle(isValid ===false? COLORS.gray: COLORS.darkblue)}
     >
         {loader === false ? (
             <Text style={styles.btnTxt}>{title}</Text>
@@ -17,7 +17,7 @@ const Button = ({title, onPress, isValid, loader}) => {
   )
 }
 
-export default Button
+export default ButtonSignup
 
 const styles = StyleSheet.create({
    
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 
     btnTxt:{
         fontFamily:'bold',
-        color:COLORS.black,
+        color:COLORS.words,
         fontSize:18,
         marginVertical:10
     },

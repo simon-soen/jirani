@@ -8,6 +8,7 @@ import CartTile from "./cart/CartTile";
 import {addToCart} from "./cart/CartUtils";
 import FavoritesTile from "./cart/FavoritesTile"
 import { addToFav } from "./cart/FavUtils";
+import ButtonSignup from "./ButtonSignup";
 
 export {
     Welcome,
@@ -19,5 +20,7 @@ export {
     CartTile,
     addToCart,
     FavoritesTile,
-    addToFav
+    addToFav,
+    ButtonSignup
+
 }
