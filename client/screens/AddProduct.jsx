@@ -5,7 +5,7 @@ import Selling from "../components/product/Selling";
 import { COLORS } from '../constants';
 import { BackBtn, Button } from "../components";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import * as ImagePicker from 'expo-image-picker';
 
 const AddProuct = ({navigation}) => {
    
@@ -26,7 +26,7 @@ const AddProuct = ({navigation}) => {
       const userId = await  AsyncStorage.getItem('id');
       console.log('User ID:', userId);
       
-      const response = await fetch(`http://192.168.0.109:3000/api/products/${userId.replace(/"/g, '')}`, {
+      const response = await fetch(`http://localhost:3000/api/products/${userId.replace(/"/g, '')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,6 +66,13 @@ const AddProuct = ({navigation}) => {
                     <View style={styles.inputWrapper (COLORS.lightWhite)}>
                         <TextInput placeholder="Title" value={title} onChangeText={setTitle} />
                     </View>
+                </View>
+                <View>
+                  {selectedImage && (
+                    <Image source={selectedImage} style={{ width: 200, height: 200 }} />
+                  )}
+                  <Button title="Select Image" onPress={selectImage} />
+                  <Button title="Upload Image" onPress={uploadImage} />
                 </View>
 
                 <View style={styles.wrapper}>

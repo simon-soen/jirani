@@ -13,7 +13,7 @@ const useFetch = () => {
 
 
         try{
-            const response = await axios.get('http://192.168.0.109:3000/api/products/');
+            const response = await axios.get('http://localhost:3000/api/products/');
 
             console.log('Response Data:', response.data);
             setData(response.data)

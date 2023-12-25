@@ -10,7 +10,7 @@ const cartRouter = require('./routes/cart');
 const orderRouter = require('./routes/order');
 const favouriteRouter = require('./routes/favourite');
 const upload = require("./routes/upload")
-const port = 3000;
+const port = 8080;
 
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL).then(() => console.log('db connected')).catch((err) => console.log(err));

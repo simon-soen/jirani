@@ -61,7 +61,19 @@ const Home = ({navigation}) => {
 
         </View>
       </View> 
-     w
+     <ScrollView>
+        <View style={styles.container}>
+          <Welcome user={userData ? userData.name : "Guest"} />
+          <Carousel />
+          <Headings title="Categories" />
+          <ProductRow />
+          <Headings title="Top Selling" />
+          <ProductRow />
+          <Headings title="Best Deals" />
+          <ProductRow />
+        </View>
+      
+    </ScrollView>
     </SafeAreaView>
   )
 }

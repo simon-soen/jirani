@@ -5,7 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS, SIZES } from "../../constants";
 import styles from "../product/searchTile.style";
 import { useNavigation } from "@react-navigation/native";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const FavoriteTile = () => {
     const [userId, setUserId] = useState(null);

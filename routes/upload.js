@@ -1,10 +1,10 @@
-import upload from "../controllers/upload";
-const express = require('express')
+const upload = require("../controllers/uploadController")
+const express = require("express")
 const router = express.Router()
 
-router.post("/upload", upload.single("file"), (req,res)=>{
-    if(req.file===undefined) return res.send("You must select a file")
-    const imgUrl = `http://localhost:3000/file/$req.file.filename`
-    return res.send(imgUrl)
+router.post("/", upload.single("file"), (req, res) => {
+    if (req.file === undefined) return res.send("you must select a file");
+    const imgUrl = `http://localhost:3000/api/${req.file.filename}`;
+    return res.send(imgUrl);
 })
-module.exports = router
+module.exports = router;
