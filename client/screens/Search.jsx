@@ -16,8 +16,9 @@ const Search = () => {
 
   //http://192.168.0.109:3000/api/products/search/${searchKey}
   const handleSearch = async () => {
+    const SERVER_URL = process.env.SERVER_URL
     try {
-      const response = await axios.get(`http://192.168.0.109:3000/api/products/search/${searchKey}`);
+      const response = await axios.get(`/api/products/search/${searchKey}`);
 
       setSearchResult(response.data);
 

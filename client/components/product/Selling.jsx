@@ -12,7 +12,6 @@ const navigation = useNavigation();
     return (
     <View>
         <View style={styles.container}>
-            <Text style={styles.welcomeTxt (COLORS.black, SIZES.xSmall)}>Make some cash</Text>
             <Text style={styles.welcomeTxt (COLORS.primary, )}>What are you Selling?</Text>
         </View>
         

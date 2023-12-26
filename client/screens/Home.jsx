@@ -4,6 +4,7 @@ import {SafeAreaView } from "react-native-safe-area-context";
 import styles from "./home.style";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { Welcome } from "../components";
+// import Search from "../components/home/Search";
 import Carousel from "../components/home/Carousel";
 import Headings from "../components/home/headings";
 import ProductRow from "../components/product/productRow";
@@ -40,7 +41,7 @@ const Home = ({navigation}) => {
   };
 
   return ( 
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons name="location-outline" size={24}/>
@@ -61,17 +62,13 @@ const Home = ({navigation}) => {
 
         </View>
       </View> 
-     <ScrollView>
-        <View style={styles.container}>
+     <ScrollView style={{flexGrow: 1}}>
           <Welcome user={userData ? userData.name : "Guest"} />
+         
           <Carousel />
-          <Headings title="Categories" />
+          <Headings  />
           <ProductRow />
-          <Headings title="Top Selling" />
-          <ProductRow />
-          <Headings title="Best Deals" />
-          <ProductRow />
-        </View>
+      
       
     </ScrollView>
     </SafeAreaView>

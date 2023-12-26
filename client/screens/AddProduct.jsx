@@ -33,7 +33,7 @@ const AddProuct = ({navigation}) => {
   }
   const uploadImage = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/upload', {
+      const response = await fetch('/api/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -50,13 +50,14 @@ const AddProuct = ({navigation}) => {
   }
 
   const createProduct = async () => {
+    const SERVER_URL = process.env.SERVER_URL
   
     try {
 
       const userId = await  AsyncStorage.getItem('id');
       console.log('User ID:', userId);
       
-      const response = await fetch(`http://localhost:3000/api/products/${userId.replace(/"/g, '')}`, {
+      const response = await fetch(`/api/products/${userId.replace(/"/g, '')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

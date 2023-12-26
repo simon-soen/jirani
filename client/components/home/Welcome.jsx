@@ -12,9 +12,11 @@ const navigation = useNavigation();
     return (
     <View>
         <View style={styles.container}>
-            <Text style={styles.welcomeTxt (COLORS.black, SIZES.xSmall)}>Find the most</Text>
-            <Text style={styles.welcomeTxt (COLORS.primary, )}>Luxurious faniture</Text>
-        </View>
+            <Text style={styles.welcomeTxt (COLORS.black, SIZES.xSmall)}>BUY & SELL</Text>
+            <Text style={styles.welcomeTxt (COLORS.primary, )}></Text>
+            <View style={styles.categories}>
+
+            </View>
 
         <View style={styles.searchContainer}>
             <TouchableOpacity>  
@@ -34,7 +36,7 @@ const navigation = useNavigation();
                 </TouchableOpacity>
             </View>
         </View>
-        
+        </View>
     </View>
   )
 }

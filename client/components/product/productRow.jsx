@@ -8,9 +8,9 @@ import useFetch from "../../hook/useFetch";
 
 
 
-
 const windowWidth = Dimensions.get('window').width;
 const itemWidth = 182 ; 
+const SERVER_URL = process.env.SERVER_URL
 
 const calculateNumColumns = () => {
   const numColumns = Math.floor(windowWidth / itemWidth);
@@ -19,9 +19,9 @@ const calculateNumColumns = () => {
 
 
 const ProductRow = () => {
-  const { data, isLoading, error } = useFetch('http://localhost:3000/api/products');
+  const { data, isLoading, error } = useFetch('/api/products');
   
-  console.log("Data:", data);
+  // console.log("Data:", data);
   console.log("isLoading:", isLoading);
   return (
     <View style={styles.container}>

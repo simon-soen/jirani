@@ -6,7 +6,7 @@ const ButtonSignup = ({title, onPress, isValid, loader}) => {
   return (
     <TouchableOpacity 
         onPress={onPress} 
-        style={styles.btnStyle(isValid ===false? COLORS.gray: COLORS.darkblue)}
+        style={styles.btnStyle(isValid ===false? COLORS.gray: COLORS.primary)}
     >
         {loader === false ? (
             <Text style={styles.btnTxt}>{title}</Text>

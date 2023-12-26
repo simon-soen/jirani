@@ -8,10 +8,11 @@ const styles = StyleSheet.create({
     },
 
     welcomeTxt: (color) => ({   
-        fontSize:SIZES.xxLarge -6,
+        fontSize:SIZES.xxLarge-11,
         fontFamily:"bold",
         color:color,
-        marginHorizontal:SIZES.small
+        marginHorizontal:SIZES.xLarge + 10,
+        marginTop:SIZES.xSmall/2,
     }),
 
     searchContainer:{ 
