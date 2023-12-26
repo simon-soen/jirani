@@ -14,7 +14,7 @@ const useFetch = (initialLimit = 10) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get(`http://localhost:3000/api/products?limit=${limit}`);
+      const response = await axios.get(`/api/products?limit=${limit}`);
       console.log('Response Data:', response.data);
       setData(response.data);
       setError(null);

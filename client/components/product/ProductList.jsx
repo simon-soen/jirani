@@ -22,7 +22,7 @@ const ProductList = () => {
   const { data, isLoading, error, refetch } = useFetch(5);
 
   // Later, if you want to fetch 10 products
-  refetch(10);
+  
 
   console.log("Data:", data);
   console.error("Error:", error);
