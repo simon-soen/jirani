@@ -17,13 +17,7 @@ const calculateNumColumns = () => {
 
 const ProductList = () => {
   const SERVER_URL = process.env.SERVER_URL
-  // Fetch 5 products
-  // Example usage: Fetch 5 products initially
-  const { data, isLoading, error, refetch } = useFetch(5);
-
-  // Later, if you want to fetch 10 products
-  
-
+  const { data, isLoading, error } = useFetch(); // Limit the number of products to 10
   console.log("Data:", data);
   console.error("Error:", error);
 

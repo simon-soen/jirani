@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Alert, ScrollView } from "react-native";
 import React, {useState, useEffect}from "react";
 import style from "./profile.styles";
 import { StatusBar } from "react-native";
@@ -94,7 +94,7 @@ const Profile = ( {navigation}) => {
 
 
   return (
-    <View style={style.container}>
+    <ScrollView style={style.container}>
           <View style={style.container}>
             <StatusBar backgroundColor={COLORS.gray}/>
 
@@ -206,7 +206,7 @@ const Profile = ( {navigation}) => {
             </View>
           </View>
 
-    </View>
+    </ScrollView>
 
   )
 }
