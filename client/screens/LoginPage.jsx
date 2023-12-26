@@ -50,7 +50,7 @@ const LoginPage = ({navigation}) => {
 
 
         try{
-            const endpoint ='/api/login/'
+            const endpoint ='http://localhost:3000/api/login/'
             const data = values;
 
             const response = await axios.post(endpoint, data);

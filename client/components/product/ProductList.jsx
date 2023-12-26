@@ -17,7 +17,7 @@ const calculateNumColumns = () => {
 
 const ProductList = () => {
   const SERVER_URL = process.env.SERVER_URL
-  const { data, isLoading, error } = useFetch(); // Limit the number of products to 10
+  const { data, isLoading, error } = useFetch('http://localhost:3000/api/products'); // Limit the number of products to 10
   console.log("Data:", data);
   console.error("Error:", error);
 
@@ -33,7 +33,8 @@ const ProductList = () => {
     <View style={styles.container}>
       <FlatList
         data={data}
-        keyExtractor={(item) => item._id.toString()}
+        
+        keyExtractor={(item) => item?._id}
         numColumns={calculateNumColumns()}
         renderItem={({ item }) => <ProductCardView item={item} />}
         contentContainerStyle={styles.contentContainer}
