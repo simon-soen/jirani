@@ -9,6 +9,11 @@ import {addToCart} from "./cart/CartUtils";
 import FavoritesTile from "./cart/FavoritesTile"
 import { addToFav } from "./cart/FavUtils";
 import ButtonSignup from "./ButtonSignup";
+import categories from "./home/categories";
+import MyProducts from "./shop/MyProducts";
+import ProductCard from "./shop/ProductCard";
+import { fetchSupplierUsername } from "./auth/Username";  
+import CategoriesTile from "./home/CategoriesTile"; 
 
 export {
     Welcome,
@@ -21,6 +26,11 @@ export {
     addToCart,
     FavoritesTile,
     addToFav,
-    ButtonSignup
+    ButtonSignup,
+    categories,
+    MyProducts,
+    ProductCard,
+    fetchSupplierUsername,
+    CategoriesTile
 
 }

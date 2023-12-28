@@ -13,7 +13,7 @@ const CategoriesTile = ({}) => {
 
 
   const handleCategoryPress = (category) => {
-    navigation.navigate("CategoryScreen", { category });
+    navigation.navigate("CategoryScreen", { categories });
   };
 
   const toggleCategoriesVisibility = () => {

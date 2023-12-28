@@ -9,6 +9,8 @@ import Orders from "./Orders";
 import Favorites from "./Favorites";
 import SignUp from "./SignUp";
 import AddProduct from "./AddProduct";
+import Shop from "./Shop";
+import CategoryScreen from "./CategoryScreen";
 
 
 
@@ -23,5 +25,7 @@ export {
     Orders,
     Favorites,
     SignUp,
-    AddProduct
+    AddProduct,
+    Shop,
+    CategoryScreen
 };
