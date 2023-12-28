@@ -1,22 +1,24 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View, FlatList, Dimensions } from "react-native";
 import React from "react";
 import {SafeAreaView } from "react-native-safe-area-context";
 import styles from "./home.style";
-import { Ionicons, Fontisto } from "@expo/vector-icons";
+import { Ionicons, Fontisto,  MaterialCommunityIcons} from "@expo/vector-icons";
 import { Welcome } from "../components";
-// import Search from "../components/home/Search";
 import Carousel from "../components/home/Carousel";
 import Headings from "../components/home/headings";
 import ProductRow from "../components/product/productRow";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { useState } from "react";
+import { COLORS, SIZES } from "../constants";
+import CategoriesTile from "../components/home/CategoriesTile";
  
 
 
 const Home = ({navigation}) => {
   const [userData, setUserData] = useState(null)
   const [userLogin, setUserLogin] = useState(false)
+
 
   useEffect(() => {
     checkExistingUser();
@@ -41,10 +43,10 @@ const Home = ({navigation}) => {
   };
 
   return ( 
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{height:SIZES.height - 75}}>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
-          <Ionicons name="location-outline" size={24}/>
+          <Ionicons name="location-outline" size={24} color={COLORS.gray2}/>
 
           <Text style={styles.location}>{userData ? userData.location :"Nairobi Kenya"}</Text>
           
@@ -53,27 +55,26 @@ const Home = ({navigation}) => {
               <Text style={styles.cartNumber} >8</Text>
             </View>
 
-
-            
               <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                <Fontisto name="shopping-bag" size={24} />
+                <Fontisto name="shopping-bag" size={20} color={COLORS.gray2}/>
               </TouchableOpacity>
           </View>
-
+          
         </View>
+
+        <CategoriesTile/>
+  
+
+      
       </View> 
-     <ScrollView style={{flexGrow: 1}}>
-          <Welcome user={userData ? userData.name : "Guest"} />
-         
-          <Carousel />
-          <Headings  />
-          <ProductRow />
-      
-      
-    </ScrollView>
+      <ScrollView>
+        <Welcome />
+        <Carousel/>
+        <Headings/> 
+        <ProductRow/>
+      </ScrollView>
     </SafeAreaView>
   )
 }
    
 export default Home;  
-

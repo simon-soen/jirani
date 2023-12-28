@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         color:color,
         marginHorizontal:SIZES.small
     }),
-
+   
     searchContainer:{ 
         justifyContent:"center",
         alignContent:"center",
