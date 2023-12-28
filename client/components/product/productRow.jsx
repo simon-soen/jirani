@@ -19,7 +19,7 @@ const calculateNumColumns = () => {
 
 
 const ProductRow = () => {
-  const { data, isLoading, error } = useFetch();
+  const { data, isLoading, error } = useFetch('http://localhost:3000/api/products');
   
   // console.log("Data:", data);
   console.log("isLoading:", isLoading);
