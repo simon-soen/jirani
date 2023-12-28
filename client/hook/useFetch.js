@@ -15,7 +15,7 @@ const useFetch = () => {
         try{
             const response = await axios.get('http://localhost:3000/api/products');
 
-            console.log('Response Data:', response.data);
+            //console.log('Response Data:', response.data);
             setData(response.data)
             setIsLoading(false)
         } catch (error) {
