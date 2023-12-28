@@ -51,7 +51,7 @@ const MyProducts = () => {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`http://192.168.0.109:3000/api/products/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`http://localhost:3000/api/products/${userId.replace(/"/g, '')}`);
             const data = await response.json();
             
             console.log('Fetched data:', data);
