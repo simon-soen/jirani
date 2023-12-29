@@ -6,7 +6,7 @@ export const addToCart = async (cartItem, quantity) => {
     const userId = await AsyncStorage.getItem('id');
 
     // Make a POST request to the server's /api/cart/add/:id endpoint
-    const response = await fetch(`http://localhost:3000/api/cart/add/${userId.replace(/"/g, '')}`, {
+    const response = await fetch(`/api/cart/add/${userId.replace(/"/g, '')}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

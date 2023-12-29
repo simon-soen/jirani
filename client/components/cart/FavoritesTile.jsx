@@ -34,7 +34,7 @@ const FavoriteTile = () => {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`http://localhost:3000/api/favourite/find/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`/api/favourite/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
             
             console.log('Fetched data:', data);

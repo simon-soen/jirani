@@ -39,7 +39,7 @@ const CategoriesTile = ({}) => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <View style={styles.categories}>      
+        <View style={styles.categories}>
           <FlatList
             data={calculateVisibleCategories()}
             keyExtractor={(item) => item.value}

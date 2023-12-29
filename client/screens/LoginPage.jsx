@@ -45,12 +45,11 @@ const LoginPage = ({navigation}) => {
       };
 
       const login = async (values) => {
-        const SERVER_URL = process.env.SERVER_URL
         setLoader(true)
 
 
         try{
-            const endpoint ='http://localhost:3000/api/login/'
+            const endpoint ='/api/login/'
             const data = values;
 
             const response = await axios.post(endpoint, data);

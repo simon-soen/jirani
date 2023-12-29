@@ -57,7 +57,7 @@ const AddProuct = ({navigation}) => {
       const userId = await  AsyncStorage.getItem('id');
       console.log('User ID:', userId);
       
-      const response = await fetch(`http://localhost:3000/api/products/${userId.replace(/"/g, '')}`, {
+      const response = await fetch(`/api/products/${userId.replace(/"/g, '')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
