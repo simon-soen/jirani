@@ -44,6 +44,12 @@
         "projectId": "edaeec7e-33c7-495a-826a-eb69856e2c84"
       }
     },
-    "owner": "simon9141"
+    "owner": "simon9141",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/edaeec7e-33c7-495a-826a-eb69856e2c84"
+    }
   }
 }
