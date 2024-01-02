@@ -49,7 +49,7 @@ const LoginPage = ({navigation}) => {
 
 
         try{
-            const endpoint ='/api/login/'
+            const endpoint ='https://jirani-bebe9d207799.herokuapp.com/api/login/'
             const data = values;
 
             const response = await axios.post(endpoint, data);

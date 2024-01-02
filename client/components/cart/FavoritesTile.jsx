@@ -34,7 +34,7 @@ const FavoriteTile = () => {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`/api/favourite/find/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/favourite/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
             
             console.log('Fetched data:', data);

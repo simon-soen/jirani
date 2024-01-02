@@ -18,7 +18,7 @@ const Search = () => {
   const handleSearch = async () => {
     const SERVER_URL = process.env.SERVER_URL
     try {
-      const response = await axios.get(`/api/products/search/${searchKey}`);
+      const response = await axios.get(`https://jirani-bebe9d207799.herokuapp.com/api/products/search/${searchKey}`);
 
       setSearchResult(response.data);
 

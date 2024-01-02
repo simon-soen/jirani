@@ -1,17 +1,19 @@
 import {StyleSheet} from 'react-native';
-import {COLORS, SIZES} from '../../constants';
+import {COLORS, SIZES, SHADOWS} from '../../constants';
 
 const styles = StyleSheet.create({
    
     container: {
-        width: 390,
-        height: 180,
-        backgroundColor: COLORS.secondary,
-        borderRadius: SIZES.medium,
-        marginRight: SIZES.small,
-        marginBottom: SIZES.small,
-        marginHorizontal: SIZES.small/1.5,
-        
+        flex: 1,
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: SIZES.small, // Fix the typo here
+        flexDirection: "row",
+        borderRadius: SIZES.small,
+        padding: SIZES.medium,
+        backgroundColor: "#fff",
+        ...SHADOWS. medium,
+        shadowColor: COLORS.lightWhite,
     },
 
     imageCont:{
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
 
     imageContainer: {
       flex: 1,
-      width: 170,
+      width: 70,
       marginLeft:SIZES.small/2,
       marginTop:SIZES.small/2,
       overflow: 'hidden',
@@ -30,9 +32,12 @@ const styles = StyleSheet.create({
     },
  
     image:{
-        aspectRatio: 1,
-        resizeMode: 'cover', 
-    },
+        width:70,
+        backgroundColor:COLORS.secondary,
+        borderRadius:SIZES.medium,
+        justifyContent:"center",
+          alignItems:"center",
+     },
 
     details:{
         padding: SIZES.small,

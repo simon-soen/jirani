@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         height:SIZES.height/1.35,
         width:SIZES.width,
         resizeMode:'contain',
-        backgroundColor:COLORS.darkblue,
+        backgroundColor:COLORS.primary,
         borderBottomLeftRadius:SIZES.xxLarge,
         borderBottomRightRadius:SIZES.xxLarge,
     },
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         height:SIZES.height - (SIZES.height / 1.35),
         width:SIZES.width,
         resizeMode:'contain',
-        // backgroundColor:COLORS.darkblue,
+        // backgroundColor:COLORS.primary,
         
         
     },

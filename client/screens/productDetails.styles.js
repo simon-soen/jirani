@@ -4,7 +4,7 @@ import { SIZES, COLORS } from "../constants";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:COLORS.darkblue
+        backgroundColor:COLORS.primary
       },
 
     upperRow:{
@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
        heart:{
         color:COLORS.red,
        },
-
+       imageWrapper:{
+        height: SIZES.height * 0.4,
+       },
       image:{
          aspectRatio: 1,
          resizeMode: 'cover',
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
 
        title:{
         fontFamily:"bold",
-        fontSize:SIZES.xxLarge/1.4,
+        fontSize:SIZES.xLarge,
 
        },
        
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
        descriptionWrapper:{
         marginTop:SIZES.large+2,
         marginHorizontal:SIZES.large,
-        height: SIZES.height * 0.2,
+        height: SIZES.height * 0.28,
        },
 
        description:{
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         alignItems: 'center',
         backgroundColor:COLORS.lightWhite,
-        padding:5,
+        
         borderBottomLeftRadius:SIZES.xLarge,
         borderBottomRightRadius:SIZES.xLarge,
         margginHorizontal:12
@@ -166,11 +168,11 @@ const styles = StyleSheet.create({
        cartTitle:{
         fontFamily:"bold",
         fontSize:22,
-        color:COLORS.darkblue,
+        color:COLORS.primary,
         backgroundColor:COLORS.lightWhite,
         borderBottomRightRadius:SIZES.large,
         borderTopRightRadius:SIZES.large,
-        borderColor:COLORS.darkblue,
+        borderColor:COLORS.primary,
         borderWidth: 1, 
         marginLeft:SIZES.small/5,
         padding: 10,
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
        addCart:{
         width:57,
         height:57,
-        backgroundColor:COLORS.darkblue,
+        backgroundColor:COLORS.primary,
         alignItems:"center",
         justifyContent:"center",
         borderWidth: 1,

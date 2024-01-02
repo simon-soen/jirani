@@ -7,13 +7,13 @@ const styles = StyleSheet.create({
         width:SIZES.width,
         resizeMode:'contain',
       
-        backgroundColor:COLORS.darkblue
+        backgroundColor:COLORS.primary
     },
     middle:{
         height:SIZES.height/2.3,
         width:SIZES.width,
         resizeMode:'contain',
-        backgroundColor:COLORS.darkblue,
+        backgroundColor:COLORS.primary,
         borderBottomLeftRadius: SIZES.height/2.3,
         
     },
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         width:SIZES.width/2,
         resizeMode:'contain',
         marginBottom:SIZES.xxLarge,
-        backgroundColor:COLORS.darkblue,
+        backgroundColor:COLORS.primary,
         borderTopRightRadius:SIZES.height - (SIZES.height / 2.5) - (SIZES.height / 2.4),
     },
 

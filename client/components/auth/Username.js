@@ -6,7 +6,7 @@ const fetchSupplierUsername = async (item) => {
         return 'Unknown';
       }
   
-      const response = await fetch(`/api/users/${item.supplier.replace(/"/g, '')}`);
+      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/users/${item.supplier.replace(/"/g, '')}`);
       const userData = await response.json();
   
       if (response.ok) {

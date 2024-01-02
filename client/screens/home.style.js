@@ -1,6 +1,5 @@
-import { StyleSheet } from "react-native";
-import { COLORS } from "../constants";
-import { SIZES } from "../constants";
+import { StyleSheet } from "react-native";;
+import { COLORS, SIZES } from "../constants";
 
 
 const styles = StyleSheet.create({
@@ -10,43 +9,26 @@ const styles = StyleSheet.create({
     },
 
     appBarWrapper :{
-        marginTop:SIZES.small,
-        marginhorizontal:22
+        // marginTop:SIZES.small,
+        marginhorizontal:22,
     },
 
     appBar:{
+        height:50,
         flexDirection:"row",
         justifyContent:"space-between",
-        alignItems:"center"
+        alignItems:"center",
+        backgroundColor : COLORS.primary,
     },
 
     location : {
         fontSize: SIZES.medium,
         fontFamily:"medium",
-        color:'white'
+        color: COLORS.gray2,
     },
 
-    cartCount:{
-        position:"absolute",
-        bottom:16,
-        width:16,
-        height:16,
-        borderRadius:8,
-        alignContent:"center",
-        backgroundColor:"green",
-        justifyContent:"center",
-        zIndex:999,
-        
-    },
-
-    cartNumber : {
-        fontFamily:"regular",
-        fontWeight:"600",
-        fontSize:10,
-        color: "white",
-        alignSelf:"center",
-        
-    }
+   
+   
 })
 
 export default styles;

@@ -21,7 +21,7 @@ const CategoryList = ({ category }) => {
 
   const fetchProductsByCategory = async (category) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/products/category/${category}`);
+      const response = await axios.get(`https://jirani-bebe9d207799.herokuapp.com/api/products/category/${category}`);
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);

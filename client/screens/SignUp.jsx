@@ -52,7 +52,7 @@ const validationSchema = Yup.object().shape({
     setLoader(true);
 
     try{
-        const endpoint ='/api/register';
+        const endpoint ='https://jirani-bebe9d207799.herokuapp.com/api/register';
         const data = values;
 
         const response = await axios.post(endpoint, data);

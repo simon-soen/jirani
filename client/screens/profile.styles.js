@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
      },
 
      cover:{
-        height: 290,
+        height: 273,
         width: '100%',
         resizeMode: 'cover',
      },

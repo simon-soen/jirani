@@ -41,7 +41,7 @@ const UploadView = () => {
         name: 'myImage.jpg', // Customize filename if needed
       });
 
-      const response = await axios.post('/api/upload', formData, {
+      const response = await axios.post('https://jirani-bebe9d207799.herokuapp.com/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
