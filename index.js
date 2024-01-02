@@ -9,8 +9,8 @@ const userRouter = require('./routes/user');
 const cartRouter = require('./routes/cart');
 const orderRouter = require('./routes/order');
 const favouriteRouter = require('./routes/favourite');
-const upload = require('./routes/upload')
-const Grid = require('gridfs-stream')
+// const upload = require('./routes/upload')
+// const Grid = require('gridfs-stream')
 const path = require('path')
 
 
@@ -37,7 +37,7 @@ app.use('/api/users', userRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/favourite', favouriteRouter);
-app.use('/api/upload', upload);
+
 
 
 

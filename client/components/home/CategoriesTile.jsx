@@ -42,20 +42,20 @@ const CategoriesTile = ({}) => {
         <View style={styles.categories}>
           <FlatList
             data={calculateVisibleCategories()}
-            keyExtractor={(item) => item.value}
+            keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
               <TouchableOpacity
-                key={item.value}
+                key={item._id}
                 style={[
                   styles.categoryButton,
-                  { backgroundColor: selectedCategory === item.value ? COLORS.primary : COLORS.secondary },
+                  { backgroundColor: selectedCategory === item._id ? COLORS.primary : COLORS.secondary },
                 ]}
                 onPress={() => handleCategoryPress(item.value)}
               >
                 <Text
                   style={[
                     styles.categoryText,
-                    { color: selectedCategory === item.value ? COLORS.offwhite : COLORS.primary },
+                    { color: selectedCategory === item._id ? COLORS.offwhite : COLORS.primary },
                   ]}
                 >
                   {item.label}
@@ -68,7 +68,7 @@ const CategoriesTile = ({}) => {
           {hiddenCategories().length > 0 && showAllCategories && (
             <FlatList
               data={hiddenCategories()}
-              keyExtractor={(item) => item.value}
+              keyExtractor={(item) => item._id}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   key={item.value}

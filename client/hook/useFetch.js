@@ -13,7 +13,7 @@ const useFetch = () => {
 
 
         try{
-            const response = await axios.get('/api/products');
+            const response = await axios.get('https://jirani-bebe9d207799.herokuapp.com/api/products');
 
             //console.log('Response Data:', response.data);
             setData(response.data)
