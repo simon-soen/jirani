@@ -14,6 +14,7 @@ const favouriteRouter = require('./routes/favourite');
 const path = require('path')
 
 
+
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL).then(() => console.log('db connected')).catch((err) => console.log(err));
 // const conn = mongoose.connection;
