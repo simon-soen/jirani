@@ -30,15 +30,20 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.Des_mond.Tom"
+      "package": "com.Des_mond.Tom",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler":"metro"
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
+        "projectId": "edaeec7e-33c7-495a-826a-eb69856e2c84"
       }
-    }
+    },
+    "owner": "simon9141"
   }
 }
