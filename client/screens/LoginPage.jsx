@@ -92,8 +92,8 @@ const LoginPage = ({navigation}) => {
 
     return (
        
-           <SafeAreaView style={{}}>
-                <View style={{backgroundColor:COLORS.beige}}>
+        <SafeAreaView style={{}}>
+            <View style={{backgroundColor:COLORS.beige}}>
                     <BackBtn onPress={() => navigation.goBack()} />
                     {/* <Image
                         source={require("../assets/images/bk.png")}
@@ -113,18 +113,18 @@ const LoginPage = ({navigation}) => {
                         <View style={{marginHorizontal:20}}>
                          <Text style={styles.title} >Sign In</Text>
                         
-                         <View style={styles.wrapper}>
-                                    <Text style={styles.label}>Email</Text>
-                                    <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
-                                        <MaterialCommunityIcons
+                            <View style={styles.wrapper}>
+                                <Text style={styles.label}>Email</Text>
+                                <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
+                                    <MaterialCommunityIcons
                                             name="email-outline"  
                                             size={24}
                                             color={COLORS.gray}
                                             style={styles.iconStye}
 
-                                        />
+                                    />
  
-                                        <TextInput
+                                    <TextInput
                                             placeholder="Enter your email"
                                             onFocus={() => {setFieldTouched('email')}}
                                             onBlur={()=> {setFieldTouched('email', "")}}
@@ -133,25 +133,25 @@ const LoginPage = ({navigation}) => {
                                             autoCapitalize="none"
                                             autoCorrect={false}
                                             style={{flex:1}}
-                                        />
-                                    </View>
+                                    />
+                                </View>
                                     {touched.email && errors.email && (
                                         <Text style={styles.errorMessage}>{errors.email}</Text>
                                     )}
-                                </View>
+                            </View>
 
-                                <View style={styles.wrapper}>
-                                    <Text style={styles.label}>Password</Text>
-                                    <View style={styles.inputWrapper(touched.password ? COLORS.secondary: COLORS.offwhite)}>
-                                        <MaterialCommunityIcons
+                            <View style={styles.wrapper}>
+                                <Text style={styles.label}>Password</Text>
+                                <View style={styles.inputWrapper(touched.password ? COLORS.secondary: COLORS.offwhite)}>
+                                    <MaterialCommunityIcons
                                             name="lock-outline"  
                                             size={24}
                                             color={COLORS.gray}
                                             style={styles.iconStye}
 
-                                        />
+                                    />
  
-                                        <TextInput
+                                    <TextInput
                                             secureTextEntry={!obsecureText}
                                             placeholder="Password"
                                             onFocus={() => {setFieldTouched('password')}}
@@ -161,20 +161,20 @@ const LoginPage = ({navigation}) => {
                                             autoCapitalize="none"
                                             autoCorrect={false}
                                             style={{flex:1}}
-                                        />
+                                    />
 
-                                        <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
+                                    <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
                                             <MaterialCommunityIcons 
                                                 name={obsecureText? "eye-outline" : "eye-off-outline"}
                                                 size={18}
                                             />
-                                        </TouchableOpacity>
+                                    </TouchableOpacity>
 
-                                    </View>
+                                </View>
                                     {touched.password && errors.password && (
                                         <Text style={styles.errorMessage}>{errors.password}</Text>
                                     )}
-                                    </View>
+                            </View>
                         </View>
                         
                     </View>
@@ -182,7 +182,7 @@ const LoginPage = ({navigation}) => {
                         <Button 
                             loader={loader}
                             title={"L O G I N"} 
-                            onPress={isValid ?handleSubmit: inValidForm} 
+                            onPress={isValid ? handleSubmit: inValidForm} 
                             isValid={isValid}
                             /> 
 
@@ -287,8 +287,8 @@ const LoginPage = ({navigation}) => {
                        
 
                     </Formik> */}
-                 </View>
-           </SafeAreaView>
+            </View>
+        </SafeAreaView>
         
     );
 

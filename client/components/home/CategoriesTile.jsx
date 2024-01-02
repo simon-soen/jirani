@@ -93,7 +93,6 @@ const CategoriesTile = ({}) => {
           )}
         </View>
 
-         {/* Display the button to toggle categories visibility when they overflow */}
       
 
       {categories.length > 2 && (
@@ -101,8 +100,6 @@ const CategoriesTile = ({}) => {
           <MaterialCommunityIcons
             name={showAllCategories ? 'chevron-up-circle' : 'chevron-down-circle'}
             size={24}
-            color="#000"
-            backgroundColor="#fff"
             style={styles.arrowIcon}
           />        
           </TouchableOpacity>
@@ -118,19 +115,23 @@ const styles = StyleSheet.create({
   container: {
     padding: SIZES.small,
   },
+
   categories: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "flex-start",
     alignItems: "center",
   },
+
   categoryButton: {
     marginRight: 6,
+    marginBottom: 6,
     padding: 4,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: COLORS.gray2,
   },
+
   categoryText: {},
 
   toggleButton: {
@@ -138,9 +139,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   arrowIcon: {
     color: COLORS.primary,
-    top: -3,
   },
 });
 

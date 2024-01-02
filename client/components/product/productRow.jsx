@@ -5,35 +5,32 @@ import ProductCardView from "./productCardView";
 import styles from "./productRow.style";
 import useFetch from "../../hook/useFetch";
 
-
-
-
 const windowWidth = Dimensions.get('window').width;
 const itemWidth = 182 ; 
-const SERVER_URL = process.env.SERVER_URL
 
 const calculateNumColumns = () => {
   const numColumns = Math.floor(windowWidth / itemWidth);
   return numColumns > 0 ? numColumns : 1;
 };
 
-
 const ProductRow = () => {
-  const { data, isLoading, error } = useFetch('/api/products');
+  const { data, isLoading, error } = useFetch();
   
   // console.log("Data:", data);
   console.log("isLoading:", isLoading);
   return (
     <View style={styles.container}>
-      {isLoading ? ( // Corrected variable name
+      {isLoading ? (
         <ActivityIndicator size={SIZES.xxLarge} color={COLORS.primary} />
       ) : error ? (
         <Text>Error: {error.message}</Text>
       ) : (
         <FlatList
-          data={data}
-          keyExtractor={(item) => item._id}
-          renderItem={({ item }) => <ProductCardView item={item} />}
+          data={data || []} // Add a fallback value for data
+          keyExtractor={(item) => item?._id?.toString()} // Use optional chaining to avoid error
+          renderItem={({ item }) => (
+            <ProductCardView item={item} /> // Add unique key prop
+          )}
           numColumns={calculateNumColumns()}
           contentContainerStyle={{ columnGap: SIZES.medium }}
         />

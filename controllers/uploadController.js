@@ -1,18 +1,14 @@
-// const mutler = require('multer');
-// const {GridFsStorage} = require('multer-gridfs-storage');
-// const storage = new GridFsStorage({
-//     url: process.env.MONGO_URL,
-//     file:(req,file)=>{
-//         const match = ["image/png","image/jpeg"];
-//         if(match.indexOf(file.mimetype)===-1){
-//             const filename = `${Date.now()}-bezkoder-${file.originalname}`;
-//             return filename;
-//         }
-//         return{
-//             bucketName:"photos",
-//             filename:`${Date.now()}-bezkoder-${file.originalname}`
-//         }
-//     }
-    
-// })
-// module.exports = mutler({storage});
+const multer = require('multer');
+const { GridFsStorage } = require('multer-gridfs-storage');
+const { extname } = require('path'); // Add this line to import extname function
+
+const storage = new GridFsStorage({
+  url: 'mongodb+srv://desmond:dell2430@tom.u7ovfmj.mongodb.net/TOM',
+  file: (req, file) => {
+    const filename = Date.now() + extname(file.originalname);
+    return { filename, bucketName: 'uploads' };
+  },
+});
+const upload = multer({ storage });
+
+module.exports = upload;
