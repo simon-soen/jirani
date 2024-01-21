@@ -8,7 +8,7 @@ import ProductCardView from "./productCardView";
 
 
 const windowWidth = Dimensions.get('window').width;
-const itemWidth = 150; // Adjust this based on your design
+const itemWidth = 200;
 
 const calculateNumColumns = () => {
   const numColumns = Math.floor(windowWidth / itemWidth);
@@ -16,10 +16,9 @@ const calculateNumColumns = () => {
 };
 
 const ProductList = () => {
-  const { data, isLoading, error } = useFetch();
-  //console.log("Data:", data);
-    console.error("Error:", error);
-
+  const { data, isLoading, error } = useFetch('https://localhost:3000/api/products');
+  console.log("Data:", data);
+  console.log("isLoading:", isLoading);
 
 
     if (isLoading) {
@@ -37,9 +36,8 @@ const ProductList = () => {
               keyExtractor={(item) => item._id.toString()}
               numColumns={calculateNumColumns()}
               renderItem={({ item }) => <ProductCardView item={item} />}
-              contentContainerStyle={styles.contentContainer} 
-              ItemSeparatorComponent={() => <View style={styles.separator} />}
-                />
+              contentContainerStyle={styles.contentContainer}   
+            />
         </View>
     )
 }

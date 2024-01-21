@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { SIZES, COLORS } from "../constants";
+import { SIZES, COLORS, SHADOWS } from "../constants";
 
 const styles = StyleSheet.create({
     container: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         position:"absolute",
-        top:SIZES.xxLarge,
+        top:SIZES.xLarge,
         width:SIZES.width - 40,
         zIndex:1, 
        },
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
         height: SIZES.height * 0.4,
        },
       image:{
-         aspectRatio: 1,
-         resizeMode: 'cover',
+         aspectRatio: 5/4.2,
+         resizeMode: 'stretch'
        },
 
        details:{
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
 
         ratingText:{
           color:COLORS.gray,
+          fontSize:SIZES.medium,
           fontFamily:"medium",
           paddingHorizontal:SIZES.small
         },
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
 
        descriptionText:{
         fontFamily:"regular",
-        fontSize:SIZES.large,
+        fontSize:SIZES.medium,
         marginBottom:SIZES.small,
         textAlign:"justify",
 
@@ -195,11 +196,214 @@ const styles = StyleSheet.create({
 
        fonti:{
         color:COLORS.lightWhite,
-       }
+       },
 
 
-
+       modalContainer:{
+        flex:1,
+        width:SIZES.width,
+        backgroundColor:COLORS.lightWhite,
+        // justifyContent:"center",
+        // alignItems:"center",
+        // marginHorizontal:SIZES.large,
+        borderRadius:SIZES.large,
+        height:SIZES.height*0.8,
+        top:SIZES.height*0.3,
+        // position:"absolute",
+        zIndex:1,
+        shadowColor: COLORS.black,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        backgroundColor:COLORS.offwhite,
        
+       },
+
+       modalContent:{
+        height:SIZES.height*0.61,
+        padding:SIZES.large,
+
+       },
+
+       modalHeader:{
+          flexDirection:"row",
+          justifyContent:"space-between",
+       },
+
+       modalTitle:{
+        fontFamily:"bold",
+        fontSize:SIZES.xLarge,
+        color:COLORS.primary,
+        // marginHorizontal:SIZES.width*0.2,
+       },
+
+       labels:{
+        fontFamily:'regular',
+        fontSize: SIZES.medium*0.8,
+        marginBottom:5,
+        marginEnd:5,
+        textAlign:'right',
+        color:COLORS.primary,
+        
+       },
+
+       wrapper: {
+        marginBottom:20,
+    },
+
+    inputWrapper: {
+      borderColor: COLORS.primary,
+      height: 80,
+      backgroundColor:COLORS.lightWhite,
+      borderWidth:1, 
+      height:55,
+      borderRadius:5,
+      flexDirection:'row',            
+      paddingHorizontal:15,
+      alignItems:'center', 
+
+  },
+  
+
+       paymentMethodContainer:{
+        flexDirection:"row",
+        justifyContent: "space-between",
+        marginBottom: SIZES.small, // Fix the typo here
+        flexDirection: "row",
+        borderRadius: SIZES.small,
+        padding: SIZES.medium,
+        backgroundColor: "#fff",
+        ...SHADOWS. medium,
+        shadowColor: COLORS.lightWhite,
+        marginBottom:20,
+
+       },
+
+       mpesaImageContainer:{
+        width:SIZES.width*0.3, 
+        height: SIZES.xxLarge,
+        backgroundColor:COLORS.secondary,
+        justifyContent:"center",
+        alignItems:"center",
+       },
+
+      mpesaImage:{
+        width:"100%",
+        height: SIZES.xxLarge,
+        resizeMode:"cover",
+      },
+        mpesaNo:{
+          fontFamily:"bold",
+          fontSize:SIZES.large,
+          color:COLORS.gray,
+        },
+
+        itemContainer: {
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: SIZES.small,
+        flexDirection: "row",
+        borderRadius: SIZES.small,
+        padding: SIZES.medium,
+        backgroundColor: "#fff",
+        ...SHADOWS. medium,
+        shadowColor: COLORS.lightWhite,
+        height: SIZES.xxLarge*2.4,
+        
+       
+      },
+      
+
+      itemImage:{
+       width: 105, 
+       height: SIZES.xxLarge*1.9,
+       backgroundColor:COLORS.secondary,
+       borderRadius:SIZES.medium,
+       justifyContent:"center",
+       alignItems:"center",
+    },
+
+    itemImg:{
+        width:"100%",
+        height: "100%",
+        borderRadius:SIZES.small,
+        resizeMode:"cover",
+    },
+
+    textContainer:{
+        flex:1,
+        padding:SIZES.small,
+    },
+
+    productTitle:{
+        fontSize:SIZES.medium,
+        fontFamily:"bold",
+        color:COLORS.primary,  
+    },
+
+    supplier:{
+        fontSize:SIZES.small + 2,
+        fontFamily:"regular",
+        color:COLORS.gray,   
+        marginTop: 1
+    
+    },
+
+    quantityInputContainer:{
+      backgroundColor:COLORS.lightWhite,
+      borderWidth:1, 
+      height:55,
+      color:COLORS.primary,
+      flexDirection:'row',    
+      justifyContent:'space-between', 
+      paddingHorizontal:15,
+      alignItems:'center', 
+    },
+
+
+
+        bottomBar:{
+          flexDirection:"row",
+          width:SIZES.width,
+        },
+
+       totalBtn:{
+        width:SIZES.width*0.5,
+        height:SIZES.xxLarge*1.3,
+        backgroundColor:COLORS.lightWhite,
+        alignItems:"center",
+        justifyContent:"center",
+        borderWidth: 1,
+        borderColor: COLORS.primary , 
+        // borderTopLeftRadius:SIZES.medium,
+       },
+       
+       confirmBtn:{
+        width:SIZES.width*0.6,
+        height:SIZES.xxLarge*1.3,
+        backgroundColor:COLORS.primary,
+        alignItems:"center",
+        justifyContent:"center",
+        borderWidth: 1,
+        borderColor: COLORS.primary , 
+        // borderTopRightRadius:SIZES.medium,
+       },
+
+       totalBtnText:{
+        fontFamily:"bold",
+        fontSize:SIZES.medium,
+        color:COLORS.primary,
+       },
+
+       confirmBtnText:{
+        fontFamily:"bold",
+        fontSize:SIZES.large,
+        color:COLORS.lightWhite,
+        
+       }
 
 })
 

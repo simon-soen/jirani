@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {SliderBox} from "react-native-image-slider-box"; 
-import { COLORS } from "../../constants";
+import { COLORS, SIZES } from "../../constants";
 
 const Carousel = () => {
     const slides = [
@@ -11,12 +11,20 @@ const Carousel = () => {
 
 
     ]
+    const  aspectRatio = 2/3.92; //width/height
   return (
     <View style={styles.carouselContainer}> 
         <SliderBox images={slides} //adding sliding immages
             dotColor= {COLORS.primary }
             inactiveDotColor={COLORS.secondary}
-            ImageComponentStyle = {{borderRadius: 15, width: "93%", marginTop: 5}} 
+            ImageComponentStyle = 
+            {{
+                borderRadius: 15, 
+                width: SIZES.width * 0.93,
+                height: SIZES.width * 0.93 * aspectRatio,
+                marginTop: 5,
+
+            }} 
             autoplay
             circleLoop  //to make the images slide in a loop 
         />

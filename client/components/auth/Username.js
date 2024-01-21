@@ -5,8 +5,9 @@ const fetchSupplierUsername = async (item) => {
         console.error('Supplier information is missing in the item object');
         return 'Unknown';
       }
-  
-      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/users/${item.supplier.replace(/"/g, '')}`);
+
+      const supplierId = item.productId ? item.productId.supplier : item.supplier;
+      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/users/${supplierId.replace(/"/g, '')}`);
       const userData = await response.json();
   
       if (response.ok) {

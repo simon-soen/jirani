@@ -6,10 +6,20 @@ const styles = StyleSheet.create({
      container: {
         flex: 1,
         backgroundColor: COLORS.lightWhite,
+        alignItems: 'center',
+     },
+     upperRow:{
+      marginLeft:45,
+      justifyContent:'flex-start',
+      top:SIZES.xLarge,
+      width:SIZES.width,
      },
 
+    
+
+
      cover:{
-        height: 273,
+        height: 253,
         width: '100%',
         resizeMode: 'cover',
      },
@@ -20,28 +30,60 @@ const styles = StyleSheet.create({
      },
 
      pofile:{
-        height: 155,
-        width: 155,
+        height: 135,
+        width: 135,
         borderRadius: 999,
         borderColor: COLORS.primary,
         resizeMode: 'cover',
         borderWidth: 2,
-        marginTop: -90,
+        marginTop: 16,
+        marginLeft: 30,
      }, 
 
      name:{
         fontFamily: 'bold',
         color: COLORS.primary,
-         marginVertical: 5
+         marginVertical: 5,
+         marginLeft: 35,
+         marginTop: 20,
      },
+    
 
      loginBtn:{
         backgroundColor: COLORS.secondary,
         padding: 2,
         borderWidth: 0.4,
         borderColor: COLORS.primary,
-        borderRadius: SIZES.xxLarge
+        borderRadius: SIZES.xxLarge,
+        marginLeft: 15,
+        marginTop: 8,
      },
+
+     email:{
+      marginHorizontal:10,
+     },
+
+     shopping:{
+         width: SIZES.width * 0.8,
+         flexDirection: 'row',
+         justifyContent: 'space-between',
+         marginHorizontal:60,
+         marginBottom: 20,
+      },
+      
+      iconContainer:{
+         height:SIZES.xxLarge*1.4, 
+         width:SIZES.xxLarge*1.4,
+         borderRadius: 999,
+      },
+
+      shopText:{
+         fontFamily: 'regular',
+         color: COLORS.gray,
+         fontWeight: '600',
+         fontSize: 14,
+         lineHeight: 26,
+      },
 
      menuText:{
         fontFamily: 'regular',
@@ -54,7 +96,7 @@ const styles = StyleSheet.create({
      },
 
      menuWrapper:{
-        marginTop:SIZES.xxLarge,
+        marginTop:SIZES.medium,
         width: SIZES.width,
         backgroundColor: COLORS.lightWhite,
         borderRadius: 12

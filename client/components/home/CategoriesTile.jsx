@@ -1,146 +1,87 @@
-import { useNavigation } from '@react-navigation/native';
-import React from "react";
-import { View, Text, TouchableOpacity, FlatList, ScrollView, StyleSheet, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 import { categories } from "./categories";
 import { COLORS, SIZES } from "../../constants";
-import { useState } from "react";
 
-const CategoriesTile = ({}) => {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [showAllCategories, setShowAllCategories] = useState(false);
+const CategoriesTile = () => {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const navigation = useNavigation();
-
 
   const handleCategoryPress = (category) => {
     navigation.navigate("CategoryScreen", { category });
+    toggleMenuVisibility();
   };
 
-  const toggleCategoriesVisibility = () => {
-    // Toggle the visibility of all categories
-    setShowAllCategories((prev) => !prev);
-  };
-
-  const calculateNumColumns = () => {
-    const screenWidth = Dimensions.get('window').width;
-    const itemWidth = 80; // Adjust this based on your design
-    return Math.floor(screenWidth / itemWidth);
-  };
-
-  const calculateVisibleCategories = () => {
-    return showAllCategories ? categories : categories.slice(0, calculateNumColumns());
-  };
-
-  const hiddenCategories = () => {
-    const categoriesPerRow = calculateNumColumns();
-    return showAllCategories ? [] : categories.slice(calculateVisibleCategories().length, categories.length);
+  const toggleMenuVisibility = () => {
+    setIsMenuVisible(!isMenuVisible);
   };
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <View style={styles.categories}>
+      <View style={styles.menuButtonContainer}>
+        <TouchableOpacity style={styles.menuButton} onPress={toggleMenuVisibility}>
+          <MaterialCommunityIcons
+            name={isMenuVisible ? "menu" : "menu"}
+            size={isMenuVisible ? 43 : 43}
+            color={COLORS.primary}
+            style={{ transform: [{ rotate: isMenuVisible ? '90deg' : '0deg' }] }}
+          />
+        </TouchableOpacity>
+      </View>
+
+      {isMenuVisible && (
+        <View style={styles.menu}>
           <FlatList
-            data={calculateVisibleCategories()}
-            keyExtractor={(item) => item._id}
+            data={categories}
+            keyExtractor={(item) => item.value}
             renderItem={({ item }) => (
               <TouchableOpacity
-                key={item._id}
-                style={[
-                  styles.categoryButton,
-                  { backgroundColor: selectedCategory === item._id ? COLORS.primary : COLORS.secondary },
-                ]}
+                style={styles.menuItem}
                 onPress={() => handleCategoryPress(item.value)}
               >
-                <Text
-                  style={[
-                    styles.categoryText,
-                    { color: selectedCategory === item._id ? COLORS.offwhite : COLORS.primary },
-                  ]}
-                >
-                  {item.label}
-                </Text>
+                <Text style={styles.menuItemText}>{item.label}</Text>
               </TouchableOpacity>
             )}
-            numColumns={calculateNumColumns()}
           />
-
-          {hiddenCategories().length > 0 && showAllCategories && (
-            <FlatList
-              data={hiddenCategories()}
-              keyExtractor={(item) => item._id}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  key={item.value}
-                  style={[
-                    styles.categoryButton,
-                    { backgroundColor: selectedCategory === item.value ? COLORS.primary : COLORS.secondary },
-                  ]}
-                  onPress={() => handleCategoryPress(item.value)}
-                >
-                  <Text
-                    style={[
-                      styles.categoryText,
-                      { color: selectedCategory === item.value ? COLORS.offwhite : COLORS.primary },
-                    ]}
-                  >
-                    {item.label}
-                  </Text>
-                </TouchableOpacity>
-              )}
-              numColumns={calculateNumColumns()}
-            />
-          )}
         </View>
-
-      
-
-      {categories.length > 2 && (
-        <TouchableOpacity style={styles.toggleButton} onPress={toggleCategoriesVisibility}>
-          <MaterialCommunityIcons
-            name={showAllCategories ? 'chevron-up-circle' : 'chevron-down-circle'}
-            size={24}
-            style={styles.arrowIcon}
-          />        
-          </TouchableOpacity>
       )}
-       
-      </ScrollView>
-
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: SIZES.small,
+    flexDirection: "column",
   },
 
-  categories: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "flex-start",
-    alignItems: "center",
+  menuButtonContainer: {
+    flexDirection: "row", 
   },
 
-  categoryButton: {
-    marginRight: 6,
-    marginBottom: 6,
-    padding: 4,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: COLORS.gray2,
+  menuButton: {
+    marginVertical:SIZES.medium,
+    marginHorizontal: SIZES.xSmall,
   },
 
-  categoryText: {},
-
-  toggleButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+  menu: {
+    position: "absolute",
+    marginVertical:SIZES.xxLarge*1.85,
+    marginHorizontal: SIZES.medium-3,
+    backgroundColor: COLORS.white,
+    zIndex: 1,
+    elevation: 5,
+    width:200 
   },
 
-  arrowIcon: {
+  menuItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.gray2,
+  },
+
+  menuItemText: {
     color: COLORS.primary,
   },
 });

@@ -14,6 +14,13 @@ import MyProducts from "./shop/MyProducts";
 import ProductCard from "./shop/ProductCard";
 import { fetchSupplierUsername } from "./auth/Username";  
 import CategoriesTile from "./home/CategoriesTile"; 
+import CartCount from "./cart/CartCount";
+import SelectComp from "./SelectComp";
+import OrderTile from "./order/OrderTile";
+import { fetchSupplierUsernames } from "./order/order";
+import CreateShopHeader from "./shop/CreateShopHeader";
+import {placeOrder} from "./order/OrderUtils";
+import SupplierOrdersTile from "./order/SupplierOrdersTile";
 
 export {
     Welcome,
@@ -31,6 +38,12 @@ export {
     MyProducts,
     ProductCard,
     fetchSupplierUsername,
-    CategoriesTile
-
+    CategoriesTile,
+    CartCount,
+    SelectComp,
+    OrderTile,
+    fetchSupplierUsernames,
+    CreateShopHeader,
+    placeOrder,
+    SupplierOrdersTile
 }

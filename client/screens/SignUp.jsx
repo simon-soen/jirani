@@ -1,4 +1,4 @@
-import { ScrollView, TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Image, TextInput } from "react-native";
+import {TouchableOpacity, View, Text, SafeAreaView, TextInput } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { BackBtn, ButtonSignup } from "../components";
@@ -6,7 +6,7 @@ import styles from "./signUp.styles";
 import {Formik} from "formik";  
 import * as Yup from "yup";   
 import  {MaterialCommunityIcons, Ionicons} from "@expo/vector-icons";
-import { COLORS, SIZES } from "../constants";
+import { COLORS } from "../constants";
 import { Alert } from "react-native";
 import axios from "axios";
 
@@ -19,6 +19,9 @@ const validationSchema = Yup.object().shape({
     email: Yup.string()
         .email('provide a valid email address')
         .required('Required'),
+    phoneNo: Yup.string()
+        .min(10, 'Provide a valid phone number')
+        .required('Required'),    
     location: Yup.string()
         .min(3, 'Provide a valid location')
         .required('Required'),  
@@ -48,11 +51,10 @@ const validationSchema = Yup.object().shape({
     };
 
   const registerUser = async (values) => {
-    const SERVER_URL = process.env.SERVER_URL
     setLoader(true);
 
     try{
-        const endpoint ='https://jirani-bebe9d207799.herokuapp.com/api/register';
+        const endpoint ="/api/register";
         const data = values;
 
         const response = await axios.post(endpoint, data);
@@ -67,30 +69,18 @@ const validationSchema = Yup.object().shape({
 
   return (
    
-        <SafeAreaView style={{}}>
+        <SafeAreaView >
             <View style={{backgroundColor:COLORS.beige}}>
                 <BackBtn onPress={() => navigation.goBack()} />
-                {/* <Image
-                    source={require("../assets/images/bk.png")}
-                    style={{
-                        height:SIZES.height/3.3,
-                        width:SIZES.width-60,
-                        resizeMode:'contain',
-                        marginBottom:SIZES.xxLarge
-                        
-                    }}
-                /> */}
-
-               
+              
                 <Formik
-                    initialValues={{email: "", password: "", location: "", username: ""}}
+                    initialValues={{email: "", password: "", location: "", username: "", phoneNo: ""}}
                     validationSchema={validationSchema}
                     onSubmit={values => registerUser(values)}
                 >
 
                     {({ 
                         handleChange,
-                        handleBlur, 
                         handleSubmit, 
                         touched, 
                         values, 
@@ -160,7 +150,7 @@ const validationSchema = Yup.object().shape({
 
                                     <View style={styles.wrapper}>
                                         <Text style={styles.label}>Phone No</Text>
-                                        <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
+                                        <View style={styles.inputWrapper(touched.phoneNo ? COLORS.secondary: COLORS.offwhite)}>
                                             <MaterialCommunityIcons
                                                 name="phone-outline"  
                                                 size={24}
@@ -171,17 +161,17 @@ const validationSchema = Yup.object().shape({
 
                                             <TextInput
                                                 placeholder="Enter your phone No..."
-                                                onFocus={() => {setFieldTouched('')}}
-                                                onBlur={()=> {setFieldTouched('', "")}}
-                                                value={values.phone}
-                                                onChangeText={handleChange("")}
+                                                onFocus={() => {setFieldTouched('phoneNo')}}
+                                                onBlur={()=> {setFieldTouched('phoneNo', "")}}
+                                                value={values.phoneNo}
+                                                onChangeText={handleChange("phoneNo")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
                                                 style={{flex:1}}
                                             />
                                         </View>
-                                        {touched.phone && errors.phone && (
-                                            <Text style={styles.errorMessage}>{errors.phone}</Text>
+                                        {touched.phoneNo && errors.phoneNo && (
+                                            <Text style={styles.errorMessage}>{errors.phoneNo}</Text>
                                         )}
                                     </View>
                             
@@ -259,13 +249,11 @@ const validationSchema = Yup.object().shape({
                                     onPress={isValid ?handleSubmit: inValidForm} 
                                     loader={loader}
                                     isValid={isValid}
-                                    style={{backgroundColor:COLORS.primary}}
+                                    style={{backgroundColor:COLORS.primary, }}
                                 /> 
                             </View>
                         </View>
-                        )}
-                    
-
+                    )}
                 </Formik>
             </View>
         </SafeAreaView>
@@ -274,5 +262,3 @@ const validationSchema = Yup.object().shape({
 }
 
 export default SignUp;
-
-const style = StyleSheet.create({})

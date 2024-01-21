@@ -24,12 +24,11 @@ app.get('*', (req, res) => {
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
-app.use('/uploads', express.static('uploads'));
 app.use('/api/products', productRouter);
 app.use('/api/', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/cart', cartRouter);
-// app.use('/api/orders', orderRouter);
+app.use('/api/orders', orderRouter);
 
 
 

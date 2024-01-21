@@ -1,9 +1,9 @@
-import { FlatList, Dimensions, View } from "react-native";
+import { ActivityIndicator, FlatList, Dimensions, View, StyleSheet } from "react-native";
 import React from "react";
-import styles from "../product/productList.style";
 import ProductCard from "./ProductCard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
+import { SIZES, COLORS } from "../../constants";
 
 
 
@@ -51,7 +51,7 @@ const MyProducts = () => {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/products/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`/api/products/${userId.replace(/"/g, '')}`);
             const data = await response.json();
             
             console.log('Fetched data:', data);
@@ -70,9 +70,13 @@ const MyProducts = () => {
         }
     };
 
-
     return(
         <View style={styles.container}>
+            {loading ? (
+                <View style={{marginVertical:SIZES.large}}>
+                    <ActivityIndicator size="large" color={COLORS.primary} />
+                </View>
+            ) : (
             <FlatList
               data={myProducts}
               keyExtractor={(item) => item._id.toString()}
@@ -81,8 +85,26 @@ const MyProducts = () => {
               contentContainerStyle={styles.contentContainer} 
               ItemSeparatorComponent={() => <View style={styles.separator} />}
                 />
+            )}
         </View>
     )
 }
 
 export default MyProducts;
+
+const styles = StyleSheet.create({
+    loadingContainer:{
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center",
+        alignContent:"center",
+    },
+
+    container:{
+        paddingTop:SIZES.xxLarge + 20,
+        width:SIZES.width-20,
+        alignSelf:"center",
+    },
+
+
+});

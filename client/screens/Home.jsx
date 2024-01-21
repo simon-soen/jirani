@@ -1,80 +1,101 @@
-import { ScrollView, Text, TouchableOpacity, View, FlatList, Dimensions } from "react-native";
-import React from "react";
-import {SafeAreaView } from "react-native-safe-area-context";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+} from "react-native";
 import styles from "./home.style";
-import { Ionicons, Fontisto,  MaterialCommunityIcons} from "@expo/vector-icons";
+import { Ionicons, Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Welcome } from "../components";
 import Carousel from "../components/home/Carousel";
 import Headings from "../components/home/headings";
 import ProductRow from "../components/product/productRow";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect } from "react";
-import { useState } from "react";
-import { COLORS, SIZES } from "../constants";
+import { COLORS, MAX_WIDTH } from "../constants";
 import CategoriesTile from "../components/home/CategoriesTile";
- 
+import CartCount from "../components/cart/CartCount";
 
-
-const Home = ({navigation}) => {
-  const [userData, setUserData] = useState(null)
-  const [userLogin, setUserLogin] = useState(false)
-
+const Home = ({ navigation }) => {
+  const [userData, setUserData] = useState(null);
+  const [userLogin, setUserLogin] = useState(false);
 
   useEffect(() => {
     checkExistingUser();
   }, []);
 
   const checkExistingUser = async () => {
-    const id = await AsyncStorage.getItem('id')
+    const id = await AsyncStorage.getItem("id");
     const userId = `user${JSON.parse(id)}`;
 
-    try{
+    try {
       const currentUser = await AsyncStorage.getItem(userId);
-      
-      if(currentUser !== null){
-        const parsedData = JSON.parse(currentUser)
+
+      if (currentUser !== null) {
+        const parsedData = JSON.parse(currentUser);
         setUserData(parsedData);
         setUserLogin(true);
       }
-    } catch{
-      console.log('Error retrieving data:', error)
+    } catch (error) {
+      console.log("Error retrieving data:", error);
     }
-
   };
 
-  return ( 
-    <SafeAreaView style={{height:SIZES.height - 75}}>
+  const renderItem = ({ item }) => {
+    switch (item.key) {
+      case "Welcome":
+        return <Welcome />;
+      case "Carousel":
+        return <Carousel />;
+      case "Headings":
+        return <Headings />;
+      case "ProductRow":
+        return <ProductRow />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1, maxWidth: MAX_WIDTH, marginTop:30 }}>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
-          <Ionicons name="location-outline" size={24} color={COLORS.gray2}/>
+          <Ionicons name="location-outline" size={24} color={COLORS.gray2} />
 
-          <Text style={styles.location}>{userData ? userData.location :"Nairobi Kenya"}</Text>
-          
-          <View style={{alignItems:"flex-end", marginRight:10}}>
-            <View style={styles.cartCount}>
-              <Text style={styles.cartNumber} >8</Text>
-            </View>
+          <Text style={styles.location}>
+            {userData ? userData.location : "Nairobi Kenya"}
+          </Text>
 
-              <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                <Fontisto name="shopping-bag" size={20} color={COLORS.gray2}/>
-              </TouchableOpacity>
+          <View style={{ alignItems: "flex-end", marginRight: 10 }}>
+            <CartCount />
+            <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+              <Fontisto name="shopping-bag" size={20} color={COLORS.gray2} />
+            </TouchableOpacity>
           </View>
-          
         </View>
+        <View style={{flexDirection:'row'}}>
+       
 
-        <CategoriesTile/>
-  
+          <CategoriesTile />
+          <Welcome />
+        </View>
+      </View>
 
-      
-      </View> 
-      <ScrollView>
-        <Welcome />
-        <Carousel/>
-        <Headings/> 
-        <ProductRow/>
-      </ScrollView>
+      <FlatList
+        data={[
+          // { key: "Welcome" },
+          { key: "Carousel" },
+          { key: "Headings" },
+          { key: "ProductRow" },
+        ]}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.key}
+        style={{marginBottom:50}}
+
+      />
     </SafeAreaView>
-  )
-}
-   
-export default Home;  
+  );
+};
+
+export default Home;

@@ -1,4 +1,4 @@
-import { TouchableOpacity,View, Text, Image, ScrollView} from "react-native";
+import { TouchableOpacity,View, Text, Image, ScrollView, Modal, TextInput} from "react-native";
 import React, {useState}from "react";
 import { useRoute } from "@react-navigation/native";
 import styles from "./productDetails.styles";
@@ -6,15 +6,19 @@ import {Ionicons, SimpleLineIcons, MaterialCommunityIcons, Fontisto} from "@expo
 import { addToCart } from "../components/cart/CartUtils";
 import { addToFav } from "../components/cart/FavUtils";
 import { Alert } from "react-native";
-import { COLORS } from "../constants";
+import { COLORS, SIZES } from "../constants";
+import { placeOrder } from "../components/order/OrderUtils"; 
 
 const ProductDetails = ({navigation}) => {
   const route = useRoute();
   const {item} = route.params;
   const [count, setCount] = useState(1)
+//   const [quantity, setQuantity] = useState("1")
+  const [isModalVisible, setModalVisible] = useState(false);
 
-
- 
+ const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  }
 
   const increment = () => {
     setCount(count + 1)
@@ -33,6 +37,19 @@ const ProductDetails = ({navigation}) => {
     await addToCart(cartItem, quantity);
   };
 
+  handlePlaceOrderButton = async () => {
+    const orderItem = item._id;
+    const quantity = count;
+    await placeOrder(orderItem, quantity);
+  
+  }
+
+  const calculatedTotal = () => {
+    const parsedCount = parseInt(count, 10);
+    const interest = 1.09;
+    return parsedCount * item.price * interest;
+  }
+ 
 
   const handleAddToFavorites = async () => {
     try {
@@ -45,20 +62,16 @@ const ProductDetails = ({navigation}) => {
         if (data === "Product added to favorite") {
           console.log('Product added to favorite. Showing alert.');
           Alert.alert('Success!', 'Product added to favorites.');
-          // Handle this case in the UI (e.g., update the UI)
        } else if (data === "Item already exists in favorite") {
           console.log('Item already exists in favorite. Showing alert.');
           Alert.alert('Oops!', 'Item already exists in favorites.');
-          // Handle this case in the UI (e.g., show an alert)
        } else {
           console.log('Unexpected response. Showing alert.');
           Alert.alert('Unexpected Response', 'An unexpected response was received from the server.');
-          // Handle other unexpected responses
        }
     } else {
        console.log('Server returned an error with status:', response.status);
        Alert.alert('Error', 'You are not logged in');
-       // Handle other error cases in the UI
     }
  
     
@@ -81,12 +94,14 @@ const ProductDetails = ({navigation}) => {
                 <Ionicons style={styles.heart}name='heart' size={30}/> 
             </TouchableOpacity>
         </View>
-        <Image
-            source={{
-                uri: item.imageUrl
-            }}
-            style={styles.image}
-        />
+        <View style={styles.imageWrapper}>
+            <Image
+                source={{
+                 uri: `/${item.imageUrl}`,
+                }}
+                style={styles.image}
+            />
+        </View>
         <View style={styles.details}>
             <View style={styles.titleRow}>
                 <Text style={styles.title}>{item.title}</Text>
@@ -94,9 +109,8 @@ const ProductDetails = ({navigation}) => {
 
                 <TouchableOpacity  style={{color: COLORS.darkblue}} onPress={() =>decrement( )}>
                         <SimpleLineIcons 
-                        name='minus' 
-                        size={20 }
-                        // style={{color: COLORS.lightWhite}}
+                            name='minus' 
+                            size={20 }
                         />
                     </TouchableOpacity>
 
@@ -104,8 +118,8 @@ const ProductDetails = ({navigation}) => {
 
                     <TouchableOpacity onPress={() =>increment()}>
                         <SimpleLineIcons 
-                        name='plus' 
-                        size={20 }/>
+                            name='plus' 
+                            size={20 }/>
                     </TouchableOpacity>
 
                   
@@ -139,7 +153,7 @@ const ProductDetails = ({navigation}) => {
                
                 <View style={styles.Location}>
 
-                <Text style={styles.similar}>Similar Products</Text>
+                <Text style={styles.similar}></Text>
                     {/* <View style={styles.locationWrap}>
                         <Ionicons name='location-outline' size={20}/>
                         <Text>{item.pronduct_location}</Text> 
@@ -162,9 +176,132 @@ const ProductDetails = ({navigation}) => {
                     <TouchableOpacity onPress={()=>handleAddToCart()} style={styles.addCart}>
                         <Fontisto style={styles.fonti}  name='shopping-bag' size={23}/> 
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>handleAddToCart()} style={styles.cartBtn}>
+                    <TouchableOpacity onPress={toggleModal} style={styles.cartBtn}>
                         <Text style={styles.cartTitle}>BUY NOW</Text>
                     </TouchableOpacity>
+
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={isModalVisible}
+                        onRequestClose={toggleModal}
+
+                    >
+                        <View style={styles.modalContainer}>
+                            <View style={styles.modalContent}>
+                                <View style={styles.modalHeader}>
+                                    <Text style={styles.modalTitle}>Purchase product</Text>
+                                    <TouchableOpacity onPress={toggleModal} style={styles.closeModalBtn}>
+                                        <Ionicons 
+                                            name='close' 
+                                            size={36}
+                                            color={COLORS.primary}
+                                        /> 
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={styles.wrapper}>
+                                    <Text style={styles.labels}>shipping informatoion</Text>
+                                    <View style={styles.inputWrapper}>
+                                    <TextInput
+                                        placeholder="State the location and a noticeable landmark..."
+                                        value=""
+                                        // onChangeText={setDescription}
+                                        multiline={true}
+                                        numberOfLines={4}
+                                        style={{ flex: 1, textAlignVertical: 'top', fontSize: SIZES.large - 3, padding:5 }}
+                                    />
+                                    </View>
+                                    </View>
+                               
+
+                                <View>
+                                    <Text style={styles.labels}>Payment method</Text>
+                                    <TouchableOpacity onPress={{}}>
+                                    
+                                        <View 
+                                            style={[
+                                                {
+                                                  borderColor: COLORS.primary,
+                                                  borderWidth: 1,
+                                                  paddingHorizontal: 15,
+                                                  paddingVertical: 10,
+                                                  borderRadius: 5,
+                                                  backgroundColor: COLORS.white,    
+                                                  height: 70,
+                                                  flexDirection: 'row',
+                                                  justifyContent: 'space-between',
+                                                },
+                                              ]}
+                                        >
+                                            <View style={styles.mpesaImageContainer}>
+                                                <Image
+                                                    source={require('../assets/images/mpesa.png')}
+                                                    style={styles.mpesaImage}
+                                                    
+                                                />
+                                                </View>
+                                                <View>
+                                                <Text style={styles.mpesaNo}>Mpesa No</Text>
+                                                <Text>0740524375</Text>
+                                            </View>
+                                        </View>
+                                        
+                                    </TouchableOpacity>
+                                </View>
+                                
+                                <View style={{top:20,}}>
+                                    <Text style={styles.labels}>item</Text>
+                                    <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('ProductDetails', {item})}>
+                                        <View style={styles.textContainer}>
+                                            <View style={{
+                                                flexDirection:"row",
+                                                justifyContent:"space-between",
+                                                }}
+                                            >
+                                                <Text style={styles.productTitle}>{item.title}</Text>
+                                                <Text style={styles.supplier}>Ksh {item.price}</Text>
+                                            </View>
+                                            <Text style={styles.supplier} numberOfLines={3}>{item.description} </Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={{top:20,}}>
+                                  <Text style={styles.labels}>No.of Items</Text>
+                                    <View style={styles.quantityInputContainer}>
+                                        <Text>Quantity:</Text>
+                                        <View style={styles.rating}>
+                                            <TouchableOpacity  style={{color: COLORS.darkblue}} onPress={() =>decrement( )}>
+                                                <SimpleLineIcons 
+                                                    name='minus' 
+                                                    size={20 }
+                                                />
+                                            </TouchableOpacity>
+
+                                            <Text style={styles.ratingText}> {count} </Text>
+
+                                            <TouchableOpacity onPress={() =>increment()}>
+                                                <SimpleLineIcons 
+                                                    name='plus' 
+                                                    size={20 }/>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>                                  
+                            </View>
+                            
+                            <View style={styles.bottomBar}>
+                                <TouchableOpacity onPress={toggleModal} style={styles.totalBtn}>
+                                    <Text style={styles.totalBtnText}>Total: ksh {calculatedTotal()}</Text>       
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={()=>handlePlaceOrderButton()} style={styles.confirmBtn}>
+                                    <Text style={styles.confirmBtnText}>Confirm</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Modal>
+
                 </View>
               
             </View>

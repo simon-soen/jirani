@@ -1,24 +1,22 @@
 import { StyleSheet } from "react-native";
-import { COLORS,SIZES } from "../../constants";
+import { SIZES } from "../../constants";
 
 const styles = StyleSheet.create({
     loadingContainer:{
         flex:1,
-        justifyContent:"center",
+        justifyContent:"flex-start",
         alignItems:"center",
         alignContent:"center",
+        
     },
 
     container:{
         alignItems:"center",
-        paddingTop:SIZES.xxLarge + 30,
-        paddingLeft:SIZES.small/2,
-        
+        top:SIZES.height*0.07,
+                
     },
 
-    separator:{
-        height:16,
-    }
+
 })
 
 export default styles;   

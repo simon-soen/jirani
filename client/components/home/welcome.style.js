@@ -4,7 +4,7 @@ import {COLORS, SIZES} from "../../constants"
 
 const styles = StyleSheet.create({
     container: {
-        width : "100%"
+        // width : "100%"
     },
 
     welcomeTxt: (color) => ({   
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
         backgroundColor:COLORS.secondary,
         borderRadius:SIZES.medium,
         marginVertical:SIZES.medium,
-        height:50,
-        marginHorizontal:SIZES.small
+        height:45,
+        width: SIZES.width-80,
     },
 
     searchIcon:{
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:SIZES.small
     }, 
     searchBtn:{
-        width:50,
+        width:45,
         height:"100%",
         borderRadius:SIZES.medium,
         justifyContent:"center",

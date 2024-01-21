@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert, ScrollView } from "react-native";
+import {  Text, View, Image, TouchableOpacity, Alert } from "react-native";
 import React, {useState, useEffect}from "react";
 import style from "./profile.styles";
-import { StatusBar } from "react-native";
+// import { StatusBar } from "react-native";
 import { COLORS } from "../constants";
 import {AntDesign, MaterialCommunityIcons, SimpleLineIcons} from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import styles from "./profile.styles";
+import { Ionicons } from '@expo/vector-icons';
+
 
 const Profile = ( {navigation}) => {
   const [userData, setUserData] = useState(null)
@@ -94,72 +97,123 @@ const Profile = ( {navigation}) => {
 
 
   return (
-    <ScrollView style={style.container}>
+    <View style={style.container}>
           <View style={style.container}>
-            <StatusBar backgroundColor={COLORS.gray}/>
+            {/* <StatusBar backgroundColor={COLORS.}/> */}
 
-            <View style={{width: '100%'}}>
-              <Image
-                source={require('../assets/images/space.jpg')}
-                style={style.cover}
-              />
+            <View style={styles.upperRow}>
+              <TouchableOpacity  onPress={() => navigation.goBack()}>
+                  <Ionicons 
+                    style={{color:COLORS.primary}} 
+                    name='chevron-back-circle' 
+                    size={30} /> 
+              </TouchableOpacity>
             </View>
-            <View style={style.profileContainer}>
+            
+
+            <View style={style.cover}>
               <Image
-                  source={require('../assets/images/profile.jpeg')}
+                  source={require('../assets/images/userDefault.png')}
                   style={style.pofile}
                 />
                 <Text style={style.name}>{userData ? userData.username :""}</Text>
-
-
                 { userLogin === false ?(
                   <TouchableOpacity onPress={() => {navigation.navigate('Login')}}>
                     <View style={style.loginBtn}>
-                       <Text style={style.menuText}>L O G I N</Text>
+                      <Text style={style.menuText}>L O G I N</Text>
                     </View>
                   </TouchableOpacity>
                 ): (
                   <View style={style.loginBtn}>
-                       <Text style={style.location}>{userData ? userData.email :""}</Text>
-                    </View>
+                      <Text style={style.email}>{userData ? userData.email :""}</Text>
+                  </View>
                 )}
+            </View>
+            <View style={{borderBottomWidth:5, borderColor:COLORS.gray2}}>
+              <View style={style.shopping}>
+                <TouchableOpacity onPress={() => navigation.navigate('Favorites') }>
+                  <View style={style.ShopItem}>
+                    <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
+                      <MaterialCommunityIcons
+                        name="heart-outline"
+                        size={34}
+                        color={COLORS.primary}
+                        style={{alignContent:'center', alignSelf:'center', marginTop:10}}
 
-                
-            
+                      />
+                      </View>
+                      <Text style={[style.shopText, {marginLeft:1}]}>Favorites</Text>
+                  </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Cart') }>
+                  <View style={style.ShopItem}>
+                    <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
+                      <SimpleLineIcons
+                        name="bag"
+                        size={34}
+                        color={COLORS.primary}
+                        style={{alignContent:'center', alignSelf:'center', marginTop:10}}
+                      />
+                      </View>
+                      <Text style={[style.shopText, {marginLeft:16}]}>Cart</Text>
+                  </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Orders') }>
+                  <View style={style.ShopItem}>
+                    <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
+                      <MaterialCommunityIcons
+                        name="truck-delivery-outline"
+                        size={34}
+                        color={COLORS.primary}
+                        style={{alignContent:'center', alignSelf:'center', marginTop:10}}
+
+                      />
+                      </View>
+                      <Text style={[style.shopText, {marginLeft:7}]}>Orders</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+
+
+
+
+            <View style={style.profileContainer}>
+              
                 { userLogin === false ?(
                   <View></View>
                 ): (
                   <View style={style.menuWrapper}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Favorites') }>
+                    
+                    <Text style={{
+                      fontFamily:"bold", 
+                      fontSize:25, 
+                      marginHorizontal:20,
+                      color:COLORS.primary, 
+                      
+                      }}>My Account</Text>
+                    <TouchableOpacity >
                       <View style={style.menuItem(0.2)}>
                         <MaterialCommunityIcons
-                          name="heart-outline"
+                          name="phone"
                           size={24}
                           color={COLORS.primary}
                         />
-                        <Text style={style.menuText}>Favorites</Text>
+                        <Text style={style.menuText}>Contact : </Text>
                       </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => navigation.navigate('Orders') }>
+                    <TouchableOpacity>
                       <View style={style.menuItem(0.2)}>
-                        <MaterialCommunityIcons
-                          name="truck-delivery-outline"
-                          size={24}
-                          color={COLORS.primary}
-                        />
-                        <Text style={style.menuText}>Orders</Text>
-                      </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => navigation.navigate('Cart') }>
-                      <View style={style.menuItem(0.2)}>
-                        <SimpleLineIcons
-                          name="bag"
-                          size={24}
-                          color={COLORS.primary}
-                        />
-                        <Text style={style.menuText}>Cart</Text>
+                      <Ionicons 
+                        name="location-outline" 
+                        size={24} 
+                        color={COLORS.primary}
+                      />
+                        <Text style={style.menuText}>Location : {userData ? userData.location :""}</Text>
                       </View>
                     </TouchableOpacity>
 
@@ -197,6 +251,17 @@ const Profile = ( {navigation}) => {
                       </View>
                     </TouchableOpacity>
 
+                    <TouchableOpacity onPress={() => {a} }>
+                      <View style={style.menuItem(0.2)}>
+                        <AntDesign
+                          name="infocirlceo"
+                          size={24}
+                          color={COLORS.primary}
+                        />
+                        <Text style={style.menuText}>About Us</Text>
+                      </View>
+                    </TouchableOpacity>
+
                   </View>
                 )}
 
@@ -206,10 +271,9 @@ const Profile = ( {navigation}) => {
             </View>
           </View>
 
-    </ScrollView>
+    </View>
 
   )
 }
 
 export default Profile;
-

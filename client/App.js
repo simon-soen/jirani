@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import BottomTabNavigation from './navigation/BottomTabNavigation';
-import {Cart, NewRivals, ProductDetails, LoginPage, Orders, Favorites, SignUp, AddProduct, Shop, CategoryScreen} from './screens';
-import { ReactNode } from 'react';
+import {
+    Cart, 
+    NewRivals, 
+    ProductDetails, 
+    LoginPage, 
+    Orders, 
+    Favorites, 
+    SignUp, 
+    AddProduct, 
+    ShopProducts, 
+    CategoryScreen, 
+    CreateShop, 
+    SupplierOrders
+  } from './screens';
+import { UserProvider } from './contexts/UserContext';
 
 
 const Stack = createNativeStackNavigator();
@@ -37,7 +50,10 @@ export default function App() {
   }
 
 
+
+
   return (
+    <UserProvider>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen 
@@ -95,8 +111,14 @@ export default function App() {
       /> 
 
       <Stack.Screen 
-        name="Shop" 
-        component={Shop}
+        name="ShopProducts" 
+        component={ShopProducts}
+        options={{headerShown:false }}
+      /> 
+
+      <Stack.Screen 
+        name="CreateShop" 
+        component={CreateShop}
         options={{headerShown:false }}
       /> 
 
@@ -104,11 +126,18 @@ export default function App() {
         name="CategoryScreen" 
         component={CategoryScreen}
         options={{headerShown:false }}
-      /> 
+      />
+
+      <Stack.Screen 
+        name="SupplierOrders" 
+        component={SupplierOrders}
+        options={{headerShown:false }}
+      />  
 
 
       </Stack.Navigator>
     </NavigationContainer>
+    </UserProvider>
   );
 }
 

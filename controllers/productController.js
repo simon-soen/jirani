@@ -1,7 +1,11 @@
+const { PutObjectCommand, S3Client } = require("@aws-sdk/client-s3"); 
 const Product =require('../models/Products');
+const client = new S3Client({});
+//const s3 = new AWS.S3();
 
 module.exports = {
-  createProduct : async (req, res) => {
+    
+createProduct: async (req, res) => {
     const userId = req.params.id;
 
     try {
@@ -15,9 +19,18 @@ module.exports = {
 
         const supplier = userId; // Assuming the supplier is derived from userId
 
-        const imageUrl = req.file ? req.file.path : '';
-        console.log(req.file)
-        console.log(req.body)
+
+        // Upload image to S3 bucket
+        const uploadParams = new PutObjectCommand( {
+            Bucket: process.env.Bucket_Name,
+            Key: imageUrl,
+            Body: req.file.buffer
+        });
+            const s3Response = await client.send(uploadParams);
+            const imageUrl = s3Response.Location;
+            console.log(s3Response);
+        
+    
         const newProduct = new Product({
             userId,
             title,
@@ -37,49 +50,7 @@ module.exports = {
         res.status(500).json({ error: error.message || "Failed to create a product" });
     }
 },
-
-
-
-
-    // createProduct: async (req, res) => {
-    //     const userId = req.params.id;
-    //   try{  
-    //     const {
-    //         title,
-    //         price,
-    //         imageUrl,
-    //         description,
-    //         supplier,
-    //         category,
-    //         product_location
-    //     } = req.body;
-
-    //     const newProduct = new Product({
-    //         userId,
-    //         title,
-    //         supplier,
-    //         price,
-    //         imageUrl,
-    //         description,
-    //         product_location,
-    //         category,
-
             
-    //     });
-
-    //     const savedProduct = await newProduct.save();
-
-    //     res.status(201).json(savedProduct);
-
-
-    //     } catch (error) {
-    //         console.log(error);
-           
-    //         res.status(500).json("Failed to create a product");
-
-    //     }
-    // },
-
     getAllProducts: async (req, res) => {
         try {
             const products = await Product.find().sort({createdAt: -1});
@@ -87,28 +58,26 @@ module.exports = {
         } catch (error) { 
             res.status(500).json("failed to get th products");
         }
-    },  
-    
-    getProduct : async (req, res) => {
+    }, 
+        
+    getProduct: async (req, res) => {
         const userId = req.params.id;
         console.log('User ID:', userId);
-        const products = await Product.find({ supplier: `"${userId}"`  });
-        console.log(products);        
-
-        try{
-            
-
-             if (!products) {
-             return res.status(404).json({ error: 'Products not found' });
-             }
-            res.status(200).json(products)
- 
-         } catch(error){
-             console.error('Error retrieving Favoutes:', error);
-            res.status(200).json(error)
-        }},
-
-
+    
+        try {
+            const products = await Product.find({ supplier: userId });
+            console.log(products);
+    
+            if (!products || products.length === 0) {
+                return res.status(404).json({ error: 'Products not found' });
+            }
+    
+            res.status(200).json(products);
+        } catch (error) {
+            console.error('Error retrieving Favorites:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
     
     searchProduct: async (req, res) => {
         try {

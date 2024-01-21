@@ -1,17 +1,31 @@
-import {StyleSheet} from 'react-native';
-import { SIZES, COLORS } from '../constants';
+import {StyleSheet, Dimensions} from 'react-native';
+import { SIZES, COLORS, MAX_WIDTH, MAX_HEIGHT } from '../constants';
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+
+    container:{
+        flex:1,
+        height: screenHeight,
+        maxWidth: screenWidth > 600 ? MAX_WIDTH.mLarge : '100%',
+        maxHeight: screenHeight > 500 ? MAX_HEIGHT : '70%',
+        alignSelf: 'center',  
+        justifyContent:'center',
+        backgroundColor:COLORS.red,
+    },  
     cover:{
         height:SIZES.height/2.5,
         width:SIZES.width,
+        maxWidth: screenWidth > 1000 ? MAX_WIDTH.mLarge : '100%', // Apply maxWidth on larger screens
+        alignSelf: 'center',
+        // maxWidth:MAX_WIDTH.mLarge,
         resizeMode:'contain',
-      
         backgroundColor:COLORS.primary
     },
     middle:{
         height:SIZES.height/2.3,
         width:SIZES.width,
+        maxWidth: screenWidth > 1000 ? MAX_WIDTH.mLarge : '100%', // Apply maxWidth on larger screens
         resizeMode:'contain',
         backgroundColor:COLORS.primary,
         borderBottomLeftRadius: SIZES.height/2.3,
@@ -20,6 +34,7 @@ const styles = StyleSheet.create({
     bottom:{
         height: SIZES.height - (SIZES.height / 2.5) - (SIZES.height / 2.4),
         width:SIZES.width/2,
+        maxWidth:MAX_WIDTH.mLarge/1.8,
         resizeMode:'contain',
         marginBottom:SIZES.xxLarge,
         backgroundColor:COLORS.primary,
@@ -82,7 +97,9 @@ const styles = StyleSheet.create({
     
         
 
-    }
+    },
+
+    
 
 })
 

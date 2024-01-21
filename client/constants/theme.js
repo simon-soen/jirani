@@ -10,7 +10,9 @@ const COLORS = {
 
   gray: "#83829A",
   gray2: "#C1C0C8",
-
+  lightgreen:"#b5e7a0",
+  biege2:"#d4ac6e",
+  lightblue:"#c0ded9",
   offwhite: "#F3F4F8",
   white: "#FFFFFF",
   black: "#000000",
@@ -18,6 +20,7 @@ const COLORS = {
   green: " #00C135",
   lightWhite: "#FAFAFC",
   darkblue: "#1f1f60",
+  deepblue: "#000033",
   beige: "#f5f5dc"
 };
 
@@ -32,6 +35,15 @@ const SIZES = {
   height,
   width
 };
+
+const MAX_WIDTH={
+  mLarge:600,
+}
+
+const MAX_HEIGHT={
+  hLarge:90,
+
+}
 
 
 const SHADOWS = {
@@ -58,4 +70,4 @@ const SHADOWS = {
 };
 
 
-export { COLORS, SIZES , SHADOWS };
+export { COLORS, SIZES , SHADOWS, MAX_WIDTH, MAX_HEIGHT  };

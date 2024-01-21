@@ -1,4 +1,4 @@
-import { ScrollView, TouchableOpacity, StyleSheet, View, Text, SafeAreaView, Image, TextInput } from "react-native";
+import { TouchableOpacity, View, Text, SafeAreaView, TextInput } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { BackBtn, Button } from "../components";
@@ -49,7 +49,7 @@ const LoginPage = ({navigation}) => {
 
 
         try{
-            const endpoint ='https://jirani-bebe9d207799.herokuapp.com/api/login/'
+            const endpoint ="/api/login/"
             const data = values;
 
             const response = await axios.post(endpoint, data);
@@ -92,201 +92,106 @@ const LoginPage = ({navigation}) => {
 
     return (
        
-        <SafeAreaView style={{}}>
+        <SafeAreaView>
             <View style={{backgroundColor:COLORS.beige}}>
                     <BackBtn onPress={() => navigation.goBack()} />
-                    {/* <Image
-                        source={require("../assets/images/bk.png")}
-                        style={styles.cover}
-                    /> */}
                     <Formik
                         initialValues={{email: "", password: ""}}
                         validationSchema={validationSchema}
                         onSubmit={values => login(values)}
+                        
                     >
 
-                        {({ handleChange, handleBlur, handleSubmit, touched, values, errors, isValid, setFieldTouched }) => (
+                    {({ handleChange, handleSubmit, touched, values, errors, isValid, setFieldTouched }) => (
                          
 
-                <View>
-                    <View style={styles.cover}>
-                        <View style={{marginHorizontal:20}}>
-                         <Text style={styles.title} >Sign In</Text>
-                        
-                            <View style={styles.wrapper}>
-                                <Text style={styles.label}>Email</Text>
-                                <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
-                                    <MaterialCommunityIcons
-                                            name="email-outline"  
-                                            size={24}
-                                            color={COLORS.gray}
-                                            style={styles.iconStye}
+                        <View >
+                            <View style={styles.cover}>
+                                <View style={{marginHorizontal:20}}>
+                                <Text style={styles.title} >Sign In</Text>
+                                
+                                    <View style={styles.wrapper}>
+                                        <Text style={styles.label}>Email</Text>
+                                        <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
+                                            <MaterialCommunityIcons
+                                                name="email-outline"  
+                                                size={24}
+                                                color={COLORS.gray}
+                                                style={styles.iconStye}
 
-                                    />
- 
-                                    <TextInput
-                                            placeholder="Enter your email"
-                                            onFocus={() => {setFieldTouched('email')}}
-                                            onBlur={()=> {setFieldTouched('email', "")}}
-                                            value={values.email}
-                                            onChangeText={handleChange("email")}
-                                            autoCapitalize="none"
-                                            autoCorrect={false}
-                                            style={{flex:1}}
-                                    />
-                                </View>
-                                    {touched.email && errors.email && (
-                                        <Text style={styles.errorMessage}>{errors.email}</Text>
-                                    )}
-                            </View>
-
-                            <View style={styles.wrapper}>
-                                <Text style={styles.label}>Password</Text>
-                                <View style={styles.inputWrapper(touched.password ? COLORS.secondary: COLORS.offwhite)}>
-                                    <MaterialCommunityIcons
-                                            name="lock-outline"  
-                                            size={24}
-                                            color={COLORS.gray}
-                                            style={styles.iconStye}
-
-                                    />
- 
-                                    <TextInput
-                                            secureTextEntry={!obsecureText}
-                                            placeholder="Password"
-                                            onFocus={() => {setFieldTouched('password')}}
-                                            onBlur={()=> {setFieldTouched('password', "")}}
-                                            value={values.password}
-                                            onChangeText={handleChange("password")}
-                                            autoCapitalize="none"
-                                            autoCorrect={false}
-                                            style={{flex:1}}
-                                    />
-
-                                    <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
-                                            <MaterialCommunityIcons 
-                                                name={obsecureText? "eye-outline" : "eye-off-outline"}
-                                                size={18}
                                             />
-                                    </TouchableOpacity>
 
+                                            <TextInput
+                                                placeholder="Enter your email"
+                                                onFocus={() => {setFieldTouched('email')}}
+                                                onBlur={()=> {setFieldTouched('email', "")}}
+                                                value={values.email}
+                                                onChangeText={handleChange("email")}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                style={{flex:1}}
+                                            />
+                                        </View>
+                                        {touched.email && errors.email && (
+                                            <Text style={styles.errorMessage}>{errors.email}</Text>
+                                        )}
+                                    </View>
+
+                                    <View style={styles.wrapper}>
+                                        <Text style={styles.label}>Password</Text>
+                                        <View style={styles.inputWrapper(touched.password ? COLORS.secondary: COLORS.offwhite)}>
+                                            <MaterialCommunityIcons
+                                                name="lock-outline"  
+                                                size={24}
+                                                color={COLORS.gray}
+                                                style={styles.iconStye}
+
+                                            />
+    
+                                            <TextInput
+                                                secureTextEntry={!obsecureText}
+                                                placeholder="Password"
+                                                onFocus={() => {setFieldTouched('password')}}
+                                                onBlur={()=> {setFieldTouched('password', "")}}
+                                                value={values.password}
+                                                onChangeText={handleChange("password")}
+                                                autoCapitalize="none"
+                                                autoCorrect={false}
+                                                style={{flex:1}}
+                                            />
+
+                                            <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
+                                                <MaterialCommunityIcons 
+                                                    name={obsecureText? "eye-outline" : "eye-off-outline"}
+                                                    size={18}
+                                                />
+                                            </TouchableOpacity>
+
+                                        </View>
+                                        {touched.password && errors.password && (
+                                            <Text style={styles.errorMessage}>{errors.password}</Text>
+                                        )}
+                                    </View>
                                 </View>
-                                    {touched.password && errors.password && (
-                                        <Text style={styles.errorMessage}>{errors.password}</Text>
-                                    )}
+                        
                             </View>
+                            <View style={styles.middle}>
+                                <Button 
+                                    loader={loader}
+                                    title={"L O G I N"} 
+                                    onPress={isValid ?handleSubmit: inValidForm} 
+                                    isValid={isValid}
+                                    /> 
+
+                            </View>     
+
+                            <View style={styles.bottom}>
+                                <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
+                            </View>
+
                         </View>
-                        
-                    </View>
-                    <View style={styles.middle}>
-                        <Button 
-                            loader={loader}
-                            title={"L O G I N"} 
-                            onPress={isValid ? handleSubmit: inValidForm} 
-                            isValid={isValid}
-                            /> 
-
-                    </View>
-
-                    <View style={styles.bottom}>
-                        <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
-                    </View>
-
-                </View>
-
-
-
-
                     )}
-                       
-
-                    </Formik> 
-
-                    {/* <Text style={styles.title}>Unlimited Freedom to Sell & Buy</Text> */}
-                    {/* <Formik
-                        initialValues={{email: "", password: ""}}
-                        validationSchema={validationSchema}
-                        onSubmit={values => login(values)}
-                    >
-
-                        {({ handleChange, handleBlur, handleSubmit, touched, values, errors, isValid, setFieldTouched }) => (
-                            <View>
-
-                                <View style={styles.wrapper}>
-                                    <Text style={styles.label}>Email</Text>
-                                    <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
-                                        <MaterialCommunityIcons
-                                            name="email-outline"  
-                                            size={24}
-                                            color={COLORS.gray}
-                                            style={styles.iconStye}
-
-                                        />
- 
-                                        <TextInput
-                                            placeholder="Enter your email"
-                                            onFocus={() => {setFieldTouched('email')}}
-                                            onBlur={()=> {setFieldTouched('email', "")}}
-                                            value={values.email}
-                                            onChangeText={handleChange("email")}
-                                            autoCapitalize="none"
-                                            autoCorrect={false}
-                                            style={{flex:1}}
-                                        />
-                                    </View>
-                                    {touched.email && errors.email && (
-                                        <Text style={styles.errorMessage}>{errors.email}</Text>
-                                    )}
-                                </View>
-                                        
-
-                                <View style={styles.wrapper}>
-                                    <Text style={styles.label}>Password</Text>
-                                    <View style={styles.inputWrapper(touched.password ? COLORS.secondary: COLORS.offwhite)}>
-                                        <MaterialCommunityIcons
-                                            name="lock-outline"  
-                                            size={24}
-                                            color={COLORS.gray}
-                                            style={styles.iconStye}
-
-                                        />
- 
-                                        <TextInput
-                                            secureTextEntry={!obsecureText}
-                                            placeholder="Password"
-                                            onFocus={() => {setFieldTouched('password')}}
-                                            onBlur={()=> {setFieldTouched('password', "")}}
-                                            value={values.password}
-                                            onChangeText={handleChange("password")}
-                                            autoCapitalize="none"
-                                            autoCorrect={false}
-                                            style={{flex:1}}
-                                        />
-
-                                        <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
-                                            <MaterialCommunityIcons 
-                                                name={obsecureText? "eye-outline" : "eye-off-outline"}
-                                                size={18}
-                                            />
-                                        </TouchableOpacity>
-
-                                    </View>
-                                    {touched.password && errors.password && (
-                                        <Text style={styles.errorMessage}>{errors.password}</Text>
-                                    )}
-                                </View>
-                               <Button 
-                                loader={loader}
-                                title={"L O G I N"} 
-                                onPress={isValid ?handleSubmit: inValidForm} 
-                                isValid={isValid}/> 
-
-                               <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
-                           </View>
-                            )}
-                       
-
-                    </Formik> */}
+                </Formik> 
             </View>
         </SafeAreaView>
         
@@ -295,4 +200,3 @@ const LoginPage = ({navigation}) => {
 };
 
 export default LoginPage;
-

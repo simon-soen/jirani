@@ -13,7 +13,10 @@ const BackBtn = ({onPress}) => {
         />
     </TouchableOpacity>
   )
-}
+};
+
+
+
 
 export default BackBtn;
 
