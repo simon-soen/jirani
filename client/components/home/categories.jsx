@@ -1,7 +1,9 @@
 // categories.js
 export const categories = [
+  { label: 'Select a category', value: '' },
     { label: 'Computers', value: 'comps' },
     { label: 'Phones', value: 'phones' },
+    { label: 'TVs', value: 'tvs' },
     { label: 'Electronics', value: 'electronics' },
     { label: 'Home and Kitchen', value: 'homeAndKitchen' },
     { label: 'Drinks', value: 'drinks' },
