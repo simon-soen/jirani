@@ -10,7 +10,7 @@ const cartRouter = require('./routes/cart');
 const orderRouter = require('./routes/order');
 const favouriteRouter = require('./routes/favourite');
 const path = require('path')
-
+const AWS = require('aws-sdk');
 
 
 dotenv.config();

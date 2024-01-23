@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         backgroundColor:COLORS.red,
     },  
     cover:{
-        height:SIZES.height/2.5,
+        height:SIZES.height,
         width:SIZES.width,
         maxWidth: screenWidth > 1000 ? MAX_WIDTH.mLarge : '100%', // Apply maxWidth on larger screens
         alignSelf: 'center',

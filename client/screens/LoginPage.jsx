@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text, SafeAreaView, TextInput } from "react-native";
+import { TouchableOpacity, View, Text, SafeAreaView, TextInput, ScrollView } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { BackBtn, Button } from "../components";
@@ -49,7 +49,7 @@ const LoginPage = ({navigation}) => {
 
 
         try{
-            const endpoint ="/api/login/"
+            const endpoint ="http://localhost:3000/api/login/"
             const data = values;
 
             const response = await axios.post(endpoint, data);
@@ -173,21 +173,21 @@ const LoginPage = ({navigation}) => {
                                         )}
                                     </View>
                                 </View>
+                                <View style={styles.middle}>
+                                    <Button 
+                                        loader={loader}
+                                        title={"L O G I N"} 
+                                        onPress={isValid ?handleSubmit: inValidForm} 
+                                        isValid={isValid}
+                                        /> 
+
+                                </View>
+                                <View style={styles.bottom}>
+                                    <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
+                                </View>  
                         
-                            </View>
-                            <View style={styles.middle}>
-                                <Button 
-                                    loader={loader}
-                                    title={"L O G I N"} 
-                                    onPress={isValid ?handleSubmit: inValidForm} 
-                                    isValid={isValid}
-                                    /> 
+                            </View>   
 
-                            </View>     
-
-                            <View style={styles.bottom}>
-                                <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
-                            </View>
 
                         </View>
                     )}

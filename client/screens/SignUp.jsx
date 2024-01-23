@@ -54,7 +54,7 @@ const validationSchema = Yup.object().shape({
     setLoader(true);
 
     try{
-        const endpoint ="/api/register";
+        const endpoint ="http://localhost:3000/api/register";
         const data = values;
 
         const response = await axios.post(endpoint, data);
@@ -241,16 +241,16 @@ const validationSchema = Yup.object().shape({
                                         )}
 
                                     </View>
+                                    <View style={styles.bottom}>
+                                        <ButtonSignup 
+                                            title={"S I G N U P"} 
+                                            onPress={isValid ?handleSubmit: inValidForm} 
+                                            loader={loader}
+                                            isValid={isValid}
+                                            style={{backgroundColor:COLORS.primary, }}
+                                        /> 
+                                    </View>
                                 </View>
-                            </View>
-                            <View style={styles.bottom}>
-                                <ButtonSignup 
-                                    title={"S I G N U P"} 
-                                    onPress={isValid ?handleSubmit: inValidForm} 
-                                    loader={loader}
-                                    isValid={isValid}
-                                    style={{backgroundColor:COLORS.primary, }}
-                                /> 
                             </View>
                         </View>
                     )}

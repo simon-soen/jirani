@@ -1,7 +1,28 @@
 const { PutObjectCommand, S3Client } = require("@aws-sdk/client-s3"); 
-const Product =require('../models/Products');
-const client = new S3Client({});
-//const s3 = new AWS.S3();
+const Product = require('../models/Products');
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+
+AWS.config.update({
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    region: 'us-east-1'
+  });
+const s3 = new AWS.S3();
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'bucketeer-897a58fa-5a33-4dbf-aa4a-7ab2e1c7ea29',
+    acl: 'public-read',
+    key: (req, file, cb) => {
+        cb(null, req.body.fileName)
+    }
+      
+      
+  }),
+});
 
 module.exports = {
     
@@ -14,22 +35,18 @@ createProduct: async (req, res) => {
             price,
             description,
             category,
-            product_location
+            product_location,
+            
         } = req.body;
 
         const supplier = userId; // Assuming the supplier is derived from userId
 
+        if (!req.file) {
+            return res.status(400).json({ error: 'Image file is required' });
+          }
 
-        // Upload image to S3 bucket
-        const uploadParams = new PutObjectCommand( {
-            Bucket: process.env.Bucket_Name,
-            Key: imageUrl,
-            Body: req.file.buffer
-        });
-            const s3Response = await client.send(uploadParams);
-            const imageUrl = s3Response.Location;
-            console.log(s3Response);
-        
+        const imageUrl = req.file.location; // Assuming the image URL is derived from the S3 upload
+
     
         const newProduct = new Product({
             userId,
@@ -42,7 +59,8 @@ createProduct: async (req, res) => {
             category,
         });
 
-        const savedProduct = await newProduct.save();
+        await newProduct.save();
+        res.status(201).json(newProduct);
 
         res.status(201).json(savedProduct);
     } catch (error) {
