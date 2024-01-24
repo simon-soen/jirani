@@ -1,28 +1,5 @@
-const { PutObjectCommand, S3Client } = require("@aws-sdk/client-s3"); 
 const Product = require('../models/Products');
-const AWS = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
 
-AWS.config.update({
-    accessKeyId: process.env.ACCESS_KEY_ID,
-    secretAccessKey: process.env.SECRET_ACCESS_KEY,
-    region: 'us-east-1'
-  });
-const s3 = new AWS.S3();
-
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'bucketeer-897a58fa-5a33-4dbf-aa4a-7ab2e1c7ea29',
-    acl: 'public-read',
-    key: (req, file, cb) => {
-        cb(null, req.body.fileName)
-    }
-      
-      
-  }),
-});
 
 module.exports = {
     
@@ -62,7 +39,6 @@ createProduct: async (req, res) => {
         await newProduct.save();
         res.status(201).json(newProduct);
 
-        res.status(201).json(savedProduct);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message || "Failed to create a product" });
