@@ -43,6 +43,7 @@ const AddProduct = ({ navigation }) => {
       console.log('User ID:', userId);
 
       const formData = new FormData();
+      
       formData.append('title', title);
       formData.append('supplier', userId.replace(/"/g, ''));
       formData.append('price', price);

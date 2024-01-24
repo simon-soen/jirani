@@ -2,7 +2,6 @@ const router = require('express').Router();
 const productController = require('../controllers/productController');
 const upload = require('../config/multer');
 const AWS = require('aws-sdk');
-const uploadImage = require('../controllers/productController');
 
 // Create product with image upload
 router.post('/:id', upload.single('image'), productController.createProduct);

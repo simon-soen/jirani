@@ -241,6 +241,7 @@ const validationSchema = Yup.object().shape({
                                         )}
 
                                     </View>
+                                </View>
                                     <View style={styles.bottom}>
                                         <ButtonSignup 
                                             title={"S I G N U P"} 
@@ -250,7 +251,6 @@ const validationSchema = Yup.object().shape({
                                             style={{backgroundColor:COLORS.primary, }}
                                         /> 
                                     </View>
-                                </View>
                             </View>
                         </View>
                     )}

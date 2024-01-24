@@ -48,7 +48,7 @@ const ProductCardView = ({ item }) => {
         <View style={styles.imageContainer}>
           <Image
             source={{
-              uri: `/${item.imageUrl}`,
+              uri: `${item.imageUrl}`,
             }}
             style={styles.image}
           />

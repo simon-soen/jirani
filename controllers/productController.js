@@ -22,7 +22,8 @@ createProduct: async (req, res) => {
             return res.status(400).json({ error: 'Image file is required' });
           }
 
-        const imageUrl = req.file.location; // Assuming the image URL is derived from the S3 upload
+        const imageUrl = req.location; // Assuming the image URL is derived from the S3 upload
+        console.log(imageUrl)
 
     
         const newProduct = new Product({
