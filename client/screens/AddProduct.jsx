@@ -10,13 +10,12 @@ import { categories } from '../components/home/categories';
 import { launchImageLibraryAsync } from 'expo-image-picker';
 import { Ionicons } from "@expo/vector-icons";
 import mime from 'mime';
-import axios from 'axios';
 
 
 const AddProduct = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
-  const [image, setImage] = useState(null);
+  const [file, setImage] = useState(null);
   const [description, setDescription] = useState('');
   const [product_location, setProductLocation] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
@@ -50,17 +49,47 @@ const AddProduct = ({ navigation }) => {
       formData.append('description', description);
       formData.append('product_location', product_location);
       formData.append('category', selectedValue);
+     
+      if (file) {
+        // Extract filename from the URI
+        const filename = file.uri.split('/').pop();
+        console.log('File NAme:', filename);
 
-      const fileName = Date.now() + '-' + image.fileName;
-      formData.append('image', {
-        name: fileName,
-        type: image.type,
-        uri: image.uri,
+        // Append the image file separately
+        formData.append('image', {
+          uri: file.uri,
+          type: mime.getType(file.uri),
+          name: filename,
+        });
+      }
+
+
+      
+    
+
+      console.log('Image Info:', file);
+      console.log('Form Data:', formData);
+
+      const response = await fetch(`http://localhost:3000/api/products/${userId.replace(/"/g, '')}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+        },
+        body: formData,
       });
-
-      await axios.post('http://localhost:3000/api/products', formData)
-      Alert.alert('Wow! Product created successfully');
-
+      
+      console.log('Response Status:', response.status);
+      console.log('Response Text:', await response.text());
+      if (response.ok) {
+      
+        console.log('Product created successfully:', formData);
+        Alert.alert('Wow! Product created successfully');
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to create product:', errorData.error);
+        Alert.alert('Error', 'Failed to create product. Please try again later.');
+      }
     } catch (error) {
       console.error('Error creating product:', error);
       Alert.alert('Error', `An unexpected error occurred. Details: ${error.message}`);
