@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
+  StatusBar,
 } from "react-native";
 import styles from "./home.style";
 import { Ionicons, Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -58,7 +59,9 @@ const Home = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, maxWidth: MAX_WIDTH, marginTop:30 }}>
+    <SafeAreaView style={{ flex: 1, maxWidth: MAX_WIDTH}}>
+      <StatusBar barStyle="white-content" backgroundColor={COLORS.black} />
+
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons name="location-outline" size={24} color={COLORS.gray2} />

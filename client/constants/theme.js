@@ -1,4 +1,3 @@
-
 import { Dimensions } from 'react-native'
 const { height, width } = Dimensions.get('window');
 
@@ -41,7 +40,7 @@ const MAX_WIDTH={
 }
 
 const MAX_HEIGHT={
-  hLarge:90,
+  hLarge:100,
 
 }
 

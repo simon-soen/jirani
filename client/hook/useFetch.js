@@ -6,6 +6,7 @@ const useFetch = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] =useState(false);
     const [error, setError] =useState(null)
+    const SERVER = process.env.SERVER_URL
 
 
     const fetchData = async () => {

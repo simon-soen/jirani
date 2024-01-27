@@ -1,15 +1,14 @@
 import React from "react";
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StatusBar } from "react-native";
 import styles from "./shopDetails.styles";
 import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { COLORS } from "../constants";
-import { StatusBar } from "react-native";
 
 const ShopDetails = ({navigation}) => {
     // StatusBar.setBarStyle('light-content');
 return(
     <SafeAreaView>
-        {/* <StatusBar  /> */}
+        <StatusBar barStyle="white-content" backgroundColor={COLORS.primary} />
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={{

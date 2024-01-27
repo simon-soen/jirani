@@ -61,7 +61,7 @@ const OrderTile = () => {
       if (!userId) {
         return;
       }
-      const response = await fetch(`/api/orders/user/${userId.replace(/"/g, '')}`);
+      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/orders/user/${userId.replace(/"/g, '')}`);
       const data = await response.json();
 
       console.log('Fetched data:', data);

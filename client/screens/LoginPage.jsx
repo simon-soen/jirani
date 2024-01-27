@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text, SafeAreaView, TextInput, ScrollView } from "react-native";
+import { TouchableOpacity, View, Text, SafeAreaView, TextInput, StatusBar } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { BackBtn, Button } from "../components";
@@ -49,7 +49,7 @@ const LoginPage = ({navigation}) => {
 
 
         try{
-            const endpoint ="http://localhost:3000/api/login/"
+            const endpoint ="https://jirani-bebe9d207799.herokuapp.com/"
             const data = values;
 
             const response = await axios.post(endpoint, data);
@@ -93,8 +93,9 @@ const LoginPage = ({navigation}) => {
     return (
        
         <SafeAreaView>
-            <View style={{backgroundColor:COLORS.beige}}>
-                    <BackBtn onPress={() => navigation.goBack()} />
+            <StatusBar barStyle="white-content" backgroundColor={COLORS.primary} />
+            <View style={{backgroundColor:COLORS.offwhite}}>
+                    {/* <BackBtn onPress={() => navigation.goBack()} /> */}
                     <Formik
                         initialValues={{email: "", password: ""}}
                         validationSchema={validationSchema}
@@ -105,11 +106,17 @@ const LoginPage = ({navigation}) => {
                     {({ handleChange, handleSubmit, touched, values, errors, isValid, setFieldTouched }) => (
                          
 
-                        <View >
+                        <View style={styles.container}>
                             <View style={styles.cover}>
                                 <View style={{marginHorizontal:20}}>
-                                <Text style={styles.title} >Sign In</Text>
-                                
+                                    <View style={{flexDirection:"row"}}>
+                                        {/* <View style={styles.title}>
+                                            <BackBtn onPress={() => navigation.goBack()} />
+                                        </View> */}
+                                        <View>
+                                            <Text style={styles.title} >Sign In</Text>
+                                        </View>
+                                    </View>
                                     <View style={styles.wrapper}>
                                         <Text style={styles.label}>Email</Text>
                                         <View style={styles.inputWrapper(touched.email ? COLORS.secondary: COLORS.offwhite)}>
@@ -129,7 +136,7 @@ const LoginPage = ({navigation}) => {
                                                 onChangeText={handleChange("email")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
-                                                style={{flex:1}}
+                                                style={{flex:1, fontSize: 18}}
                                             />
                                         </View>
                                         {touched.email && errors.email && (
@@ -157,7 +164,7 @@ const LoginPage = ({navigation}) => {
                                                 onChangeText={handleChange("password")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
-                                                style={{flex:1}}
+                                                style={{flex:1, fontSize: 18}}
                                             />
 
                                             <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
@@ -173,21 +180,21 @@ const LoginPage = ({navigation}) => {
                                         )}
                                     </View>
                                 </View>
-                                <View style={styles.middle}>
-                                    <Button 
-                                        loader={loader}
-                                        title={"L O G I N"} 
-                                        onPress={isValid ?handleSubmit: inValidForm} 
-                                        isValid={isValid}
-                                        /> 
-
-                                </View>
-                                <View style={styles.bottom}>
-                                    <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
-                                </View>  
                         
-                            </View>   
+                            </View>
+                            <View style={styles.middle}>
+                                <Button 
+                                    loader={loader}
+                                    title={"L O G I N"} 
+                                    onPress={isValid ?handleSubmit: inValidForm} 
+                                    isValid={isValid}
+                                    /> 
 
+                            </View>     
+
+                            <View style={styles.bottom}>
+                                <Text style={styles.registrations} onPress={() => {navigation.navigate("SignUp")}}>Register</Text>
+                            </View>
 
                         </View>
                     )}

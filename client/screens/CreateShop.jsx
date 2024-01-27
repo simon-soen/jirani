@@ -51,7 +51,7 @@ const CreateShop = ({navigation}) => {
         return;
       }
 
-      const response = await fetch(`/api/shop/${userId.replace(/"/g, '')}`, {
+      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/shop/${userId.replace(/"/g, '')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

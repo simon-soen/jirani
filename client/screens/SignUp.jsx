@@ -1,4 +1,4 @@
-import {TouchableOpacity, View, Text, SafeAreaView, TextInput } from "react-native";
+import {TouchableOpacity, View, Text, SafeAreaView, TextInput, StatusBar } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { BackBtn, ButtonSignup } from "../components";
@@ -54,7 +54,7 @@ const validationSchema = Yup.object().shape({
     setLoader(true);
 
     try{
-        const endpoint ="http://localhost:3000/api/register";
+        const endpoint ="https://jirani-bebe9d207799.herokuapp.com/api/register";
         const data = values;
 
         const response = await axios.post(endpoint, data);
@@ -70,8 +70,8 @@ const validationSchema = Yup.object().shape({
   return (
    
         <SafeAreaView >
-            <View style={{backgroundColor:COLORS.beige}}>
-                <BackBtn onPress={() => navigation.goBack()} />
+            <StatusBar barStyle="white-content" backgroundColor={COLORS.primary} />
+            <View>
               
                 <Formik
                     initialValues={{email: "", password: "", location: "", username: "", phoneNo: ""}}
@@ -88,9 +88,10 @@ const validationSchema = Yup.object().shape({
                         isValid, 
                         setFieldTouched 
                     }) => (
-                        <View>
+                        <View style={styles.container}>
                             <View style={styles.cover}>
                                 <View style={{marginHorizontal:20}}>
+
                                     <Text style={styles.title} >Sign Up</Text>
 
                                     <View style={styles.wrapper}>
@@ -112,7 +113,7 @@ const validationSchema = Yup.object().shape({
                                                 onChangeText={handleChange("username")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
-                                                style={{flex:1}}
+                                                style={{flex:1, fontSize: 18}}
                                             />
                                         </View>
                                         {touched.username && errors.username && (
@@ -140,7 +141,7 @@ const validationSchema = Yup.object().shape({
                                                 onChangeText={handleChange("email")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
-                                                style={{flex:1}}
+                                                style={{flex:1, fontSize: 18}}
                                             />
                                         </View>
                                         {touched.email && errors.email && (
@@ -167,7 +168,7 @@ const validationSchema = Yup.object().shape({
                                                 onChangeText={handleChange("phoneNo")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
-                                                style={{flex:1}}
+                                                style={{flex:1, fontSize: 18}}
                                             />
                                         </View>
                                         {touched.phoneNo && errors.phoneNo && (
@@ -196,7 +197,7 @@ const validationSchema = Yup.object().shape({
                                                 onChangeText={handleChange("location")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
-                                                style={{flex:1}}
+                                                style={{flex:1, fontSize: 18}}
                                             />
                                         </View>
                                         {touched.location && errors.location && (
@@ -225,7 +226,7 @@ const validationSchema = Yup.object().shape({
                                                 onChangeText={handleChange("password")}
                                                 autoCapitalize="none"
                                                 autoCorrect={false}
-                                                style={{flex:1}}
+                                                style={{flex:1, fontSize: 18}}
                                             />
 
                                             <TouchableOpacity onPress={() => setObsequireText(!obsecureText)}>                                          
@@ -242,15 +243,15 @@ const validationSchema = Yup.object().shape({
 
                                     </View>
                                 </View>
-                                    <View style={styles.bottom}>
-                                        <ButtonSignup 
-                                            title={"S I G N U P"} 
-                                            onPress={isValid ?handleSubmit: inValidForm} 
-                                            loader={loader}
-                                            isValid={isValid}
-                                            style={{backgroundColor:COLORS.primary, }}
-                                        /> 
-                                    </View>
+                            </View>
+                            <View style={styles.bottom}>
+                                <ButtonSignup 
+                                    title={"S I G N U P"} 
+                                    onPress={isValid ?handleSubmit: inValidForm} 
+                                    loader={loader}
+                                    isValid={isValid}
+                                    style={{backgroundColor:COLORS.primary, }}
+                                /> 
                             </View>
                         </View>
                     )}

@@ -97,7 +97,7 @@ const ProductDetails = ({navigation}) => {
         <View style={styles.imageWrapper}>
             <Image
                 source={{
-                 uri: `/${item.imageUrl}`,
+                 uri: `${item.imageUrl}`,
                 }}
                 style={styles.image}
             />

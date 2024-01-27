@@ -34,7 +34,7 @@ const CartCount = () => {
           if (!userId) {
             return 0;
           }
-          const response = await fetch(`/api/cart/count/${userId.replace(/"/g, '')}`);
+          const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/cart/count/${userId.replace(/"/g, '')}`);
           const data = await response.json();
     
           console.log('Fetched cart count:', data);

@@ -62,7 +62,7 @@ const CartTile = () => {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`/api/cart/find/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/cart/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
     
             console.log('Fetched data:', data);
@@ -89,7 +89,7 @@ const CartTile = () => {
         }
       
         try {
-          const response = await axios.delete(`/api/cart/${userId.replace(/"/g, '')}/${cartItemId}`);
+          const response = await axios.delete(`https://jirani-bebe9d207799.herokuapp.com/api/cart/${userId.replace(/"/g, '')}/${cartItemId}`);
       
           // Log the entire response for debugging
           console.log('Delete Response:', response);

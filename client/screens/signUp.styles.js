@@ -5,31 +5,30 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
-        height: screenHeight,
-        maxWidth: screenWidth > 600 ? MAX_WIDTH.mLarge : '100%',
         maxHeight: screenHeight > 500 ? MAX_HEIGHT : '70%',
         alignSelf: 'center',  
         justifyContent:'center',
         backgroundColor:COLORS.beige,
     },  
     cover:{
-        height:SIZES.height,
         width:SIZES.width,
+        maxHeight: screenHeight > 100 ? MAX_HEIGHT : '70%',
         maxWidth: screenWidth > 1000 ? MAX_WIDTH.mLarge : '100%', // Apply maxWidth on larger screens
         alignSelf: 'center',
         resizeMode:'contain',
         backgroundColor:COLORS.primary,
         borderBottomLeftRadius:SIZES.xxLarge,
         borderBottomRightRadius:SIZES.xxLarge,
+        paddingBottom:73,
     },
 
 
     bottom:{
-        height:SIZES.height - (SIZES.height / 1.35),
+        height:screenHeight * 0.22,
         width:SIZES.width,
         maxWidth:MAX_WIDTH.mLarge,
         resizeMode:'contain',        
+        alignSelf: 'center',
     },
  
 
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
         color: COLORS.words,
         alignItems:'center',
         marginBottom:SIZES.xxLarge,
-        marginTop:SIZES.xxLarge
+        marginTop:SIZES.xxLarge,
     },
 
     wrapper: {

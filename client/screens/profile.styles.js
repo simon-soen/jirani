@@ -4,10 +4,16 @@ import { COLORS, SIZES } from "../constants";
 
 const styles = StyleSheet.create({
      container: {
-        flex: 1,
-        backgroundColor: COLORS.lightWhite,
-        alignItems: 'center',
+      backgroundColor:COLORS.primary,
+      height:SIZES.height * 0.4,
+      alignItems: 'center',
+
      },
+
+     header:{
+      alignItems: 'center',
+   },
+
      upperRow:{
       marginLeft:45,
       justifyContent:'flex-start',
@@ -19,14 +25,17 @@ const styles = StyleSheet.create({
 
 
      cover:{
-        height: 253,
+      //   height: 253,
         width: '100%',
         resizeMode: 'cover',
      },
 
      profileContainer: {
-        flex: 1,
-        alignItems: 'center',
+      height:SIZES.height * 0.7,
+      backgroundColor:COLORS.lightWhite,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      top:-15,
      },
 
      pofile:{
@@ -42,10 +51,10 @@ const styles = StyleSheet.create({
 
      name:{
         fontFamily: 'bold',
-        color: COLORS.primary,
+        color: COLORS.words,
          marginVertical: 5,
          marginLeft: 35,
-         marginTop: 20,
+         // marginTop: 20,
      },
     
 
@@ -56,7 +65,8 @@ const styles = StyleSheet.create({
         borderColor: COLORS.primary,
         borderRadius: SIZES.xxLarge,
         marginLeft: 15,
-        marginTop: 8,
+        marginTop: 3,
+        marginBottom: 15,
      },
 
      email:{

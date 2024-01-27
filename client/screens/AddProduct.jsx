@@ -11,7 +11,6 @@ import { launchImageLibraryAsync } from 'expo-image-picker';
 import { Ionicons } from "@expo/vector-icons";
 import mime from 'mime';
 
-
 const AddProduct = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -71,17 +70,16 @@ const AddProduct = ({ navigation }) => {
       console.log('Image Info:', file);
       console.log('Form Data:', formData);
 
-      const response = await fetch(`http://localhost:3000/api/products/${userId.replace(/"/g, '')}`, {
+      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/products/${userId.replace(/"/g, '')}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json',
-        },
+        
         body: formData,
       });
+      const responseData = await response.json();
+      console.log('Response Data:', responseData);
       
-      console.log('Response Status:', response.status);
-      console.log('Response Text:', await response.text());
+      // console.log('Response Status:', response.status);
+      // console.log('Response Text:', await response.text());
       if (response.ok) {
       
         console.log('Product created successfully:', formData);

@@ -19,7 +19,7 @@ const calculateNumColumns = () => {
 
 
 const ProductRow = () => {
-  const { data, isLoading, error } = useFetch('http://localhost:3000/api/products');
+  const { data, isLoading, error } = useFetch('https://jirani-bebe9d207799.herokuapp.com/api/products');
   
   console.log("Data:", data);
   console.log("isLoading:", isLoading);

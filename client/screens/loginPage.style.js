@@ -5,38 +5,40 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const styles = StyleSheet.create({
 
     container:{
-        flex:1,
-        height: screenHeight,
-        maxWidth: screenWidth > 600 ? MAX_WIDTH.mLarge : '100%',
-        maxHeight: screenHeight > 500 ? MAX_HEIGHT : '70%',
+        // height: screenHeight,
+        // maxWidth: screenWidth > 1000 ? MAX_WIDTH.mLarge : '100%', // Apply maxWidth on larger screens
+        // maxHeight: screenHeight > 500 ? MAX_HEIGHT : '70%',
         alignSelf: 'center',  
         justifyContent:'center',
-        backgroundColor:COLORS.red,
+        backgroundColor:COLORS.beige,
     },  
     cover:{
-        height:SIZES.height,
+        // height: screenHeight*0.4,
+        // maxHeight: screenHeight > 1000 ? MAX_HEIGHT.hLarge : '70%',
         width:SIZES.width,
         maxWidth: screenWidth > 1000 ? MAX_WIDTH.mLarge : '100%', // Apply maxWidth on larger screens
         alignSelf: 'center',
         // maxWidth:MAX_WIDTH.mLarge,
         resizeMode:'contain',
+        paddingBottom:20,
         backgroundColor:COLORS.primary
     },
     middle:{
-        height:SIZES.height/2.3,
+        height: screenHeight * 0.466,
         width:SIZES.width,
         maxWidth: screenWidth > 1000 ? MAX_WIDTH.mLarge : '100%', // Apply maxWidth on larger screens
-        resizeMode:'contain',
+        resizeMode:'stretch',
+        alignSelf: 'center',
         backgroundColor:COLORS.primary,
         borderBottomLeftRadius: SIZES.height/2.3,
         
     },
     bottom:{
-        height: SIZES.height - (SIZES.height / 2.5) - (SIZES.height / 2.4),
+        height: screenHeight * 0.14,
         width:SIZES.width/2,
-        maxWidth:MAX_WIDTH.mLarge/1.8,
+        maxWidth: screenWidth > 500 ? MAX_WIDTH.mLarge : '50%', // Apply maxWidth on larger screens
         resizeMode:'contain',
-        marginBottom:SIZES.xxLarge,
+        alignItems:'center',
         backgroundColor:COLORS.primary,
         borderTopRightRadius:SIZES.height - (SIZES.height / 2.5) - (SIZES.height / 2.4),
     },
@@ -47,7 +49,8 @@ const styles = StyleSheet.create({
         color: COLORS.words,
         alignItems:'center',
         marginBottom:SIZES.xxLarge,
-        marginTop:SIZES.xxLarge
+        marginTop:SIZES.xxLarge,
+        marginLeft:SIZES.large,
     },
 
     wrapper: {

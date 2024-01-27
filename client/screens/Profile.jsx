@@ -1,7 +1,6 @@
-import {  Text, View, Image, TouchableOpacity, Alert } from "react-native";
+import {  Text, View, Image, TouchableOpacity, Alert, SafeAreaView, ScrollView, StatusBar } from "react-native";
 import React, {useState, useEffect}from "react";
 import style from "./profile.styles";
-// import { StatusBar } from "react-native";
 import { COLORS } from "../constants";
 import {AntDesign, MaterialCommunityIcons, SimpleLineIcons} from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -97,181 +96,184 @@ const Profile = ( {navigation}) => {
 
 
   return (
-    <View style={style.container}>
-          <View style={style.container}>
-            {/* <StatusBar backgroundColor={COLORS.}/> */}
+    <SafeAreaView>
+      <View style={style.header}>
+        <View style={style.container}>
+        <StatusBar barStyle="white-content" backgroundColor={COLORS.primary} />
 
-            <View style={styles.upperRow}>
-              <TouchableOpacity  onPress={() => navigation.goBack()}>
-                  <Ionicons 
-                    style={{color:COLORS.primary}} 
-                    name='chevron-back-circle' 
-                    size={30} /> 
-              </TouchableOpacity>
-            </View>
-            
+          <View style={styles.upperRow}>
+            <TouchableOpacity  onPress={() => navigation.goBack()}>
+                <Ionicons 
+                  style={{color:COLORS.primary}} 
+                  name='chevron-back-circle' 
+                  size={30} /> 
+            </TouchableOpacity>
+          </View>
+          
 
-            <View style={style.cover}>
-              <Image
-                  source={require('../assets/images/userDefault.png')}
-                  style={style.pofile}
-                />
-                <Text style={style.name}>{userData ? userData.username :""}</Text>
-                { userLogin === false ?(
-                  <TouchableOpacity onPress={() => {navigation.navigate('Login')}}>
-                    <View style={style.loginBtn}>
-                      <Text style={style.menuText}>L O G I N</Text>
-                    </View>
-                  </TouchableOpacity>
-                ): (
+          <View style={style.cover}>
+            <Image
+                source={require('../assets/images/userDefault.png')}
+                style={style.pofile}
+              />
+              <Text style={style.name}>{userData ? userData.username :""}</Text>
+              { userLogin === false ?(
+                <TouchableOpacity onPress={() => {navigation.navigate('Login')}}>
                   <View style={style.loginBtn}>
-                      <Text style={style.email}>{userData ? userData.email :""}</Text>
-                  </View>
-                )}
-            </View>
-            <View style={{borderBottomWidth:5, borderColor:COLORS.gray2}}>
-              <View style={style.shopping}>
-                <TouchableOpacity onPress={() => navigation.navigate('Favorites') }>
-                  <View style={style.ShopItem}>
-                    <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
-                      <MaterialCommunityIcons
-                        name="heart-outline"
-                        size={34}
-                        color={COLORS.primary}
-                        style={{alignContent:'center', alignSelf:'center', marginTop:10}}
-
-                      />
-                      </View>
-                      <Text style={[style.shopText, {marginLeft:1}]}>Favorites</Text>
+                    <Text style={style.menuText}>L O G I N</Text>
                   </View>
                 </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('Cart') }>
-                  <View style={style.ShopItem}>
-                    <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
-                      <SimpleLineIcons
-                        name="bag"
-                        size={34}
-                        color={COLORS.primary}
-                        style={{alignContent:'center', alignSelf:'center', marginTop:10}}
-                      />
-                      </View>
-                      <Text style={[style.shopText, {marginLeft:16}]}>Cart</Text>
-                  </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('Orders') }>
-                  <View style={style.ShopItem}>
-                    <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
-                      <MaterialCommunityIcons
-                        name="truck-delivery-outline"
-                        size={34}
-                        color={COLORS.primary}
-                        style={{alignContent:'center', alignSelf:'center', marginTop:10}}
-
-                      />
-                      </View>
-                      <Text style={[style.shopText, {marginLeft:7}]}>Orders</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
+              ): (
+                <View style={style.loginBtn}>
+                    <Text style={style.email}>{userData ? userData.email :""}</Text>
+                </View>
+              )}
+          </View>
 
 
+          <View style={{backgroundColor:COLORS.primary}}>
+            <View style={style.shopping}>
+              <TouchableOpacity onPress={() => navigation.navigate('Favorites') }>
+                <View style={style.ShopItem}>
+                  <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
+                    <MaterialCommunityIcons
+                      name="heart-outline"
+                      size={34}
+                      color={COLORS.primary}
+                      style={{alignContent:'center', alignSelf:'center', marginTop:10}}
 
+                    />
+                    </View>
+                    <Text style={[style.shopText, {marginLeft:1}]}>Favorites</Text>
+                </View>
+              </TouchableOpacity>
 
+              <TouchableOpacity onPress={() => navigation.navigate('Cart') }>
+                <View style={style.ShopItem}>
+                  <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
+                    <SimpleLineIcons
+                      name="bag"
+                      size={34}
+                      color={COLORS.primary}
+                      style={{alignContent:'center', alignSelf:'center', marginTop:10}}
+                    />
+                    </View>
+                    <Text style={[style.shopText, {marginLeft:16}]}>Cart</Text>
+                </View>
+              </TouchableOpacity>
 
-            <View style={style.profileContainer}>
-              
-                { userLogin === false ?(
-                  <View></View>
-                ): (
-                  <View style={style.menuWrapper}>
-                    
-                    <Text style={{
-                      fontFamily:"bold", 
-                      fontSize:25, 
-                      marginHorizontal:20,
-                      color:COLORS.primary, 
-                      
-                      }}>My Account</Text>
-                    <TouchableOpacity >
-                      <View style={style.menuItem(0.2)}>
-                        <MaterialCommunityIcons
-                          name="phone"
-                          size={24}
-                          color={COLORS.primary}
-                        />
-                        <Text style={style.menuText}>Contact : </Text>
-                      </View>
-                    </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Orders') }>
+                <View style={style.ShopItem}>
+                  <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
+                    <MaterialCommunityIcons
+                      name="truck-delivery-outline"
+                      size={34}
+                      color={COLORS.primary}
+                      style={{alignContent:'center', alignSelf:'center', marginTop:10}}
 
-                    <TouchableOpacity>
-                      <View style={style.menuItem(0.2)}>
-                      <Ionicons 
-                        name="location-outline" 
-                        size={24} 
-                        color={COLORS.primary}
-                      />
-                        <Text style={style.menuText}>Location : {userData ? userData.location :""}</Text>
-                      </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => clearCache() }>
-                      <View style={style.menuItem(0.2)}>
-                        <MaterialCommunityIcons
-                          name="cached"
-                          size={24}
-                          color={COLORS.primary}
-                        />
-                        <Text style={style.menuText}>Clear cache</Text>
-                      </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => deleteAccount() }>
-                      <View style={style.menuItem(0.2)}>
-                        <AntDesign
-                          name="deleteuser"
-                          size={24}
-                          color={COLORS.primary}
-                        />
-                        <Text style={style.menuText}>Delete Account</Text>
-                      </View>
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity onPress={() => logout() }>
-                      <View style={style.menuItem(0.2)}>
-                        <AntDesign
-                          name="logout"
-                          size={24}
-                          color={COLORS.primary}
-                        />
-                        <Text style={style.menuText}>Log Out</Text>
-                      </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => {a} }>
-                      <View style={style.menuItem(0.2)}>
-                        <AntDesign
-                          name="infocirlceo"
-                          size={24}
-                          color={COLORS.primary}
-                        />
-                        <Text style={style.menuText}>About Us</Text>
-                      </View>
-                    </TouchableOpacity>
-
-                  </View>
-                )}
-
-
-
-
+                    />
+                    </View>
+                    <Text style={[style.shopText, {marginLeft:7}]}>Orders</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
 
-    </View>
+
+
+
+
+          <View style={style.profileContainer}>
+            <ScrollView>
+            
+              { userLogin === false ?(
+                <View></View>
+              ): (
+                <View style={style.menuWrapper}>
+                  
+                  <Text style={{
+                    fontFamily:"bold", 
+                    fontSize:25, 
+                    marginHorizontal:20,
+                    color:COLORS.primary, 
+                    
+                    }}>My Account</Text>
+
+
+                  <TouchableOpacity >
+                    <View style={style.menuItem(0.2)}>
+                      <MaterialCommunityIcons
+                        name="phone"
+                        size={24}
+                        color={COLORS.primary}
+                      />
+                      <Text style={style.menuText}>Contact : </Text>
+                    </View>
+                  </TouchableOpacity>
+
+
+                  <TouchableOpacity>
+                    <View style={style.menuItem(0.2)}>
+                    <Ionicons 
+                      name="location-outline" 
+                      size={24} 
+                      color={COLORS.primary}
+                    />
+                      <Text style={style.menuText}>Location : {userData ? userData.location :""}</Text>
+                    </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => clearCache() }>
+                    <View style={style.menuItem(0.2)}>
+                      <MaterialCommunityIcons
+                        name="cached"
+                        size={24}
+                        color={COLORS.primary}
+                      />
+                      <Text style={style.menuText}>Clear cache</Text>
+                    </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => deleteAccount() }>
+                    <View style={style.menuItem(0.2)}>
+                      <AntDesign
+                        name="deleteuser"
+                        size={24}
+                        color={COLORS.primary}
+                      />
+                      <Text style={style.menuText}>Delete Account</Text>
+                    </View>
+                  </TouchableOpacity>
+
+
+                  <TouchableOpacity onPress={() => logout() }>
+                    <View style={style.menuItem(0.2)}>
+                      <AntDesign
+                        name="logout"
+                        size={24}
+                        color={COLORS.primary}
+                      />
+                      <Text style={style.menuText}>Log Out</Text>
+                    </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => {a} }>
+                    <View style={style.menuItem(0.2)}>
+                      <AntDesign
+                        name="infocirlceo"
+                        size={24}
+                        color={COLORS.primary}
+                      />
+                      <Text style={style.menuText}>About Us</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </ScrollView>
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
 
   )
 }

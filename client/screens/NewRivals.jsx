@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, } from 'react-native';
+import { Text, View, TouchableOpacity,StatusBar } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './NewRivals.style';
@@ -8,7 +8,9 @@ import ProductList from '../components/product/ProductList';
 
 const NewRivals = ({navigation}) => {
     return (
-     <SafeAreaView style={[styles.container, { marginTop:30}]}>
+     <SafeAreaView style={[styles.container]}>
+              <StatusBar barStyle="white-content" backgroundColor={COLORS.black} />
+
             <View style={styles.upperRow}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Ionicons name='chevron-back-circle' 
