@@ -1,4 +1,4 @@
-import {TouchableOpacity, View, Text, SafeAreaView, TextInput, StatusBar } from "react-native";
+import {TouchableOpacity, View, Text, SafeAreaView, TextInput, StatusBar, ScrollView } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { BackBtn, ButtonSignup } from "../components";
@@ -71,7 +71,7 @@ const validationSchema = Yup.object().shape({
    
         <SafeAreaView >
             <StatusBar barStyle="white-content" backgroundColor={COLORS.primary} />
-            <View>
+            <ScrollView>
               
                 <Formik
                     initialValues={{email: "", password: "", location: "", username: "", phoneNo: ""}}
@@ -256,7 +256,7 @@ const validationSchema = Yup.object().shape({
                         </View>
                     )}
                 </Formik>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     
   )

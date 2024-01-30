@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text, SafeAreaView, TextInput, StatusBar } from "react-native";
+import { TouchableOpacity, View, Text, SafeAreaView, TextInput, StatusBar, ScrollView } from "react-native";
 import React from "react";
 import { useState } from "react";
 import { BackBtn, Button } from "../components";
@@ -49,7 +49,7 @@ const LoginPage = ({navigation}) => {
 
 
         try{
-            const endpoint ="https://jirani-bebe9d207799.herokuapp.com/"
+            const endpoint ="https://jirani-bebe9d207799.herokuapp.com/api/login/"
             const data = values;
 
             const response = await axios.post(endpoint, data);
@@ -94,7 +94,7 @@ const LoginPage = ({navigation}) => {
        
         <SafeAreaView>
             <StatusBar barStyle="white-content" backgroundColor={COLORS.primary} />
-            <View style={{backgroundColor:COLORS.offwhite}}>
+            <ScrollView style={{backgroundColor:COLORS.offwhite}}>
                     {/* <BackBtn onPress={() => navigation.goBack()} /> */}
                     <Formik
                         initialValues={{email: "", password: ""}}
@@ -199,7 +199,7 @@ const LoginPage = ({navigation}) => {
                         </View>
                     )}
                 </Formik> 
-            </View>
+            </ScrollView>
         </SafeAreaView>
         
     );
