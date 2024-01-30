@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -49,7 +50,8 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/edaeec7e-33c7-495a-826a-eb69856e2c84"
+      "url": "https://u.expo.dev/edaeec7e-33c7-495a-826a-eb69856e2c84",
+      "fallbackToCacheTimeout": 0
     }
   }
 }
