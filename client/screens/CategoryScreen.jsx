@@ -17,7 +17,7 @@ const CategoryScreen = () => {
   const categoryLabel = categories.find((cat) => cat.value === category)?.label || category;
   return (
     
-    <SafeAreaView style={[styles.container, {marginTop:30}]}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.upperRow}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
