@@ -3,7 +3,6 @@ import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StatusBar } fro
 import styles from "./shopDetails.styles";
 import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { COLORS } from "../constants";
-import { StatusBar } from "react-native";
 
 const ShopDetails = ({navigation}) => {
     // StatusBar.setBarStyle('light-content');
