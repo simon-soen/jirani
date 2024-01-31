@@ -4,9 +4,29 @@ import styles from "./shopDetails.styles";
 import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { COLORS } from "../constants";
 import { StatusBar } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const ShopDetails = ({navigation}) => {
     // StatusBar.setBarStyle('light-content');
+       useEffect(() => {
+        checkUSerLoginStatus();
+    }, []);
+
+    const checkUSerLoginStatus = async () => {
+        try {
+            const id = await AsyncStorage.getItem('id');
+            const userId = `user${JSON.parse(id)}`;
+            const currentUser = await AsyncStorage.getItem(userId);
+
+            if(currentUser === null) {
+                navigation.navigate('Home'); // Navigate to the home page
+                navigation.navigate('Login'); // Then navigate to the login page
+            }
+        }catch(error) {
+            console.log('Error checking user login status:', error);
+        }
+    };
 return(
     <SafeAreaView>
         {/* <StatusBar  /> */}
