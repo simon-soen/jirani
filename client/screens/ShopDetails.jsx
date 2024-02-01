@@ -35,7 +35,7 @@ return(
                     marginHorizontal: 20,
                     }}>
                     <View>
-                        <Text style={styles.totalSales}>Kshs 20, 000</Text>
+                        <Text style={styles.totalSales}>Kshs 0.00</Text>
                         <Text style={styles.totalSalesLabel}>Total Sales</Text>
                     </View>
                     <Ionicons name="notifications" size={24} color="white" />
