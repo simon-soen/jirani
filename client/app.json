@@ -4,10 +4,10 @@
     "slug": "Jirani",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/Jirani-logo-2.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/Jirani-logo-2.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -27,7 +27,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/Jirani-logo-2.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.Des_mond.Tom",
@@ -36,7 +36,7 @@
       ]
     },
     "web": {
-      "favicon": "./assets/images/Jirani-logo-2.png",
+      "favicon": "./assets/favicomy.png",
       "bundler": "metro"
     },
     "extra": {
