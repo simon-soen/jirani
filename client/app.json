@@ -4,10 +4,10 @@
     "slug": "Jirani",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.jpg",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/logo.jpg",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -27,7 +27,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.jpg",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.Des_mond.Tom",
@@ -49,8 +49,7 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/edaeec7e-33c7-495a-826a-eb69856e2c84",
-      "fallbackToCacheTimeout": 0
+      "url": "https://u.expo.dev/edaeec7e-33c7-495a-826a-eb69856e2c84"
     }
   }
 }
