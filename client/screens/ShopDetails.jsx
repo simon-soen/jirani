@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, SafeAreaView, TouchableOpacity, ScrollView, StatusBar } from "react-native";
 import styles from "./shopDetails.styles";
 import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
