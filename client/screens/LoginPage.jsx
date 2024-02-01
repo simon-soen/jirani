@@ -10,7 +10,7 @@ import { COLORS } from "../constants";
 import { Alert } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { SERVER_URL } from '@env'
 
 const validationSchema = Yup.object().shape({
 
@@ -49,6 +49,7 @@ const LoginPage = ({navigation}) => {
 
 
         try{
+            const apiEndpoint= SERVER_URL
             const endpoint ="https://jirani-bebe9d207799.herokuapp.com/api/login/"
             const data = values;
 
