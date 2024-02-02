@@ -11,6 +11,7 @@ import { launchImageLibraryAsync } from 'expo-image-picker';
 import { Ionicons } from "@expo/vector-icons";
 import mime from 'mime';
 
+
 const AddProduct = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -42,7 +43,6 @@ const AddProduct = ({ navigation }) => {
       console.log('User ID:', userId);
 
       const formData = new FormData();
-      
       formData.append('title', title);
       formData.append('supplier', userId.replace(/"/g, ''));
       formData.append('price', price);
@@ -72,14 +72,14 @@ const AddProduct = ({ navigation }) => {
 
       const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/products/${userId.replace(/"/g, '')}`, {
         method: 'POST',
-        
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
         body: formData,
       });
-      const responseData = await response.json();
-      console.log('Response Data:', responseData);
       
-      // console.log('Response Status:', response.status);
-      // console.log('Response Text:', await response.text());
+      console.log('Response Status:', response.status);
       if (response.ok) {
       
         console.log('Product created successfully:', formData);
