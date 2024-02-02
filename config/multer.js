@@ -21,7 +21,7 @@ const storage = multerS3({
   contentType: multerS3.AUTO_CONTENT_TYPE, // Automatically set the content type of the uploaded object
   key: (req, file, cb) => {
     // Set the key (filename) of the uploaded object
-    cb(null, Date.now().toString() + "-" + file.originalname);
+    cb(null, Date().toString() + "-" + file.originalname);
   },
 });
 
