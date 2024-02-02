@@ -22,7 +22,7 @@ createProduct: async (req, res) => {
             return res.status(400).json({ error: 'Image file is required' });
           }
 
-        const imageUrl = `https://s3.amazonaws.com/bucketeer-897a58fa-5a33-4dbf-aa4a-7ab2e1c7ea29/${new Date.now().toString()}-${req.file.originalname}`;
+        const imageUrl = `https://s3.amazonaws.com/bucketeer-897a58fa-5a33-4dbf-aa4a-7ab2e1c7ea29/${new Date().toString()}-${req.file.originalname}`;
         console.log(imageUrl)
 
     
