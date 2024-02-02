@@ -84,7 +84,7 @@ const ProductDetails = ({navigation}) => {
   
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
         <View style={styles.upperRow}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Ionicons name='chevron-back-circle' size={30}/> 
@@ -306,7 +306,7 @@ const ProductDetails = ({navigation}) => {
               
             </View>
         
-    </View>
+    </ScrollView>
     
   )
 }
