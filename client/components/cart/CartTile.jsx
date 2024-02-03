@@ -62,7 +62,8 @@ const CartTile = () => {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/cart/find/${userId.replace(/"/g, '')}`);
+            const SERVER = process.env.SERVER_URL;
+            const response = await fetch(`${SERVER}/api/cart/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
     
             console.log('Fetched data:', data);
@@ -132,7 +133,7 @@ const CartTile = () => {
                         <View style={styles.image}>
                             {item.cartItem && 
                                 <Image source={{
-                                    uri: `/${item.cartItem.imageUrl}`,
+                                    uri: `${item.cartItem.imageUrl}`,
                                     }} 
                                     style={styles.productImg} 
                                 />
