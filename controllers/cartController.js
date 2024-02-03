@@ -142,6 +142,7 @@ module.exports = {
 
            if(!cart){
                return res.status(404).json("Cart not found") 
+               console.log('Cart not found')
            }
 
            const itemCount = cart.products.reduce((total, product) => total + product.quantity, 0);

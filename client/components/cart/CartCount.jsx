@@ -35,7 +35,7 @@ const CartCount = () => {
             return 0;
           }
           const SERVER = process.env.SERVER_URL
-          const response = await fetch(`${SERVER}/api/cart/count/${userId.replace(/"/g, '')}`);
+          const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/cart/count/${userId.replace(/"/g, '')}`);
           const data = await response.json();
     
           console.log('Fetched cart count:', data);

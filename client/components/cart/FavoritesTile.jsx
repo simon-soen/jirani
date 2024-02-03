@@ -29,11 +29,12 @@ const FavoriteTile = () => {
     }, []);
    
     const getfavItems = async (userId) => {
-        const SERVER = process.env.SERVER_URL
+        
         try {
             if (!userId) {
                 return;
             }
+            const SERVER = process.env.SERVER_URL
             const response = await fetch(`${SERVER}/api/favourite/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
             
