@@ -41,7 +41,7 @@ const FavoriteTile = () => {
             console.log('Fetched data:', data);
 
             if (response.ok) {
-                const favItems = data;
+                const favItems = data.products;
                 setfavItems(favItems);
             } else {
                 console.log('Server returned an error:', data.error);
@@ -64,7 +64,7 @@ const FavoriteTile = () => {
                 </View>
             ) : (
                 <FlatList
-                    data={favItems.products}
+                    data={favItems}
                     keyExtractor={(item) => item._id}
                     renderItem={({ item }) => (
                         <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('ProductDetails', {item})}>
