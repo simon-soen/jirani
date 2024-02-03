@@ -5,8 +5,10 @@ const multerS3 = require("multer-s3");
 require('dotenv').config()
 
 // Configure AWS S3 client
+const region = process.env.BUCKETEER_AWS_REGION; // Replace AWS_REGION with your actual environment variable name
+
 const s3Client = new S3Client({
-  region: "us-east-1",
+  region: region,
   credentials: {
     accessKeyId: process.env.BUCKETEER_AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.BUCKETEER_AWS_SECRET_ACCESS_KEY,
@@ -15,13 +17,14 @@ const s3Client = new S3Client({
 
 
 // Configure multer-s3 storage
+const bucketName = process.env.BUCKETEER_BUCKET_NAME; // Replace BUCKET_NAME with your actual environment variable name
+
 const storage = multerS3({
   s3: s3Client,
-  bucket: "bucketeer-897a58fa-5a33-4dbf-aa4a-7ab2e1c7ea29",
-  contentType: multerS3.AUTO_CONTENT_TYPE, // Automatically set the content type of the uploaded object
+  bucket: bucketName,
+  contentType: multerS3.AUTO_CONTENT_TYPE,
   key: (req, file, cb) => {
-    // Set the key (filename) of the uploaded object
-    cb(null, Date().toString() + "-" + file.originalname);
+    cb(null, "products/" + Date.now().toString() + "-" + file.originalname);
   },
 });
 
@@ -29,3 +32,5 @@ const storage = multerS3({
 const upload = multer({ storage });
 
 module.exports = upload;
+    
+

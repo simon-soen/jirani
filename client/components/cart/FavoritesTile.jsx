@@ -29,12 +29,12 @@ const FavoriteTile = () => {
     }, []);
    
     const getfavItems = async (userId) => {
-        const SERVER_URL = process.env.SERVER_URL
+        const SERVER = process.env.SERVER_URL
         try {
             if (!userId) {
                 return;
             }
-            const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/favourite/find/${userId.replace(/"/g, '')}`);
+            const response = await fetch(`${SERVER}/api/favourite/find/${userId.replace(/"/g, '')}`);
             const data = await response.json();
             
             console.log('Fetched data:', data);

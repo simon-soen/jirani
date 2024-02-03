@@ -7,7 +7,8 @@ const fetchSupplierUsername = async (item) => {
       }
 
       const supplierId = item.productId ? item.productId.supplier : item.supplier;
-      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/users/${supplierId.replace(/"/g, '')}`);
+      const SERVER = process.env.SERVER_URL
+      const response = await fetch(`${SERVER}/api/users/${supplierId.replace(/"/g, '')}`);
       const userData = await response.json();
   
       if (response.ok) {

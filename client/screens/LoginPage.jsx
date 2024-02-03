@@ -49,8 +49,8 @@ const LoginPage = ({navigation}) => {
 
 
         try{
-            const apiEndpoint= SERVER_URL
-            const endpoint ="https://jirani-bebe9d207799.herokuapp.com/api/login/"
+            const SERVER = process.env.SERVER_URL
+            const endpoint =`${SERVER}/api/login/`
             const data = values;
 
             const response = await axios.post(endpoint, data);

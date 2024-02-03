@@ -89,7 +89,8 @@ const CartTile = () => {
         }
       
         try {
-          const response = await axios.delete(`https://jirani-bebe9d207799.herokuapp.com/api/cart/${userId.replace(/"/g, '')}/${cartItemId}`);
+            const SERVER = process.env.SERVER_URL
+            const response = await axios.delete(`${SERVER}/api/cart/${userId.replace(/"/g, '')}/${cartItemId}`);
       
           // Log the entire response for debugging
           console.log('Delete Response:', response);

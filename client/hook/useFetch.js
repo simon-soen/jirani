@@ -14,7 +14,8 @@ const useFetch = () => {
 
 
         try{
-            const response = await axios.get('https://jirani-bebe9d207799.herokuapp.com/api/products');
+            const SERVER = process.env.SERVER_URL
+            const response = await axios.get(`${SERVER}/api/products`);
 
             //console.log('Response Data:', response.data);
             setData(response.data)

@@ -7,11 +7,12 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#008000"
     },
     "plugins": [
+      
       [
         "expo-image-picker",
         {
@@ -36,7 +37,7 @@
       ]
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/favico.png",
       "bundler": "metro"
     },
     "extra": {

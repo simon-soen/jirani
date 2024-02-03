@@ -70,7 +70,8 @@ const AddProduct = ({ navigation }) => {
       console.log('Image Info:', file);
       console.log('Form Data:', formData);
 
-      const response = await fetch(`https://jirani-bebe9d207799.herokuapp.com/api/products/${userId.replace(/"/g, '')}`, {
+      const SERVER = process.env.SERVER_URL
+      const response = await fetch(`${SERVER}/api/products/${userId.replace(/"/g, '')}`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
