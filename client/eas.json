@@ -16,6 +16,10 @@
     "preview3": {
       "developmentClient": true
     },
-    "production": {}
+    "production": {
+      "env": {
+        "SERVER_URL": "https://jirani-bebe9d207799.herokuapp.com"
+      }
+    }
   }
 } 
