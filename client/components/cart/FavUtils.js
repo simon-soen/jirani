@@ -7,7 +7,8 @@ export const addToFav = async (favItem) => {
    
 
     // Make a POST request to the server's /api/cart/add/:id endpoint
-    const response = await fetch(`/api/favourite/add/${userId.replace(/"/g, '')}`, {
+    const SERVER = process.env.SERVER_URL
+    const response = await fetch(`${SERVER}/api/favourite/add/${userId.replace(/"/g, '')}`, {
       method: 'POST',
       
       headers: {
