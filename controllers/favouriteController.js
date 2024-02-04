@@ -5,7 +5,8 @@ const Favourite = require('../models/Favourite');
 module.exports = {
  
    addToFav: async (req, res) => {
-       const { userId, favItem} = req.body;
+     const userId = req.params.id;   
+     const {favItem} = req.body;
    
     try {
         const favourite = await Favourite.findOne({ userId });
