@@ -51,36 +51,36 @@ const ProductDetails = ({navigation}) => {
   }
  
 
-  const handleAddToFavorites = async () => {
-    try {
-      const favItem = item._id;
-      const response = await addToFav(favItem);
+//   const handleAddToFavorites = async () => {
+//     try {
+//       const favItem = item._id;
+//       const response = await addToFav(favItem);
   
-      if (response && response.ok) {
-        const data = response.data;
+//       if (response && response.ok) {
+//         const data = response.data;
        
-        if (data === "Product added to favorite") {
-          console.log('Product added to favorite. Showing alert.');
-          Alert.alert('Success!', 'Product added to favorites.');
-       } else if (data === "Item already exists in favorite") {
-          console.log('Item already exists in favorite. Showing alert.');
-          Alert.alert('Oops!', 'Item already exists in favorites.');
-       } else {
-          console.log('Unexpected response. Showing alert.');
-          Alert.alert('Unexpected Response', 'An unexpected response was received from the server.');
-       }
-    } else {
-       console.log('Server returned an error with status:', response.status);
-       Alert.alert('Error', 'You are not logged in');
-    }
+//         if (data === "Product added to favorite") {
+//           console.log('Product added to favorite. Showing alert.');
+//           Alert.alert('Success!', 'Product added to favorites.');
+//        } else if (data === "Item already exists in favorite") {
+//           console.log('Item already exists in favorite. Showing alert.');
+//           Alert.alert('Oops!', 'Item already exists in favorites.');
+//        } else {
+//           console.log('Unexpected response. Showing alert.');
+//           Alert.alert('Unexpected Response', 'An unexpected response was received from the server.');
+//        }
+//     } else {
+//        console.log('Server returned an error with status:', response.status);
+//        Alert.alert('Error', 'You are not logged in');
+//     }
  
     
-      } catch (error) {
-        // console.error('Error adding product to favorite:', error);
-        // Alert.alert('Error', 'There was an error adding the product to favorites.');
-        // Handle other types of errors in the UI
-      }
-  };
+//       } catch (error) {
+//         // console.error('Error adding product to favorite:', error);
+//         // Alert.alert('Error', 'There was an error adding the product to favorites.');
+//         // Handle other types of errors in the UI
+//       }
+//   };
   
 
   return (
@@ -90,9 +90,9 @@ const ProductDetails = ({navigation}) => {
                 <Ionicons name='chevron-back-circle' size={30}/> 
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={()=>handleAddToFavorites()}>
+            {/* <TouchableOpacity onPress={()=>handleAddToFavorites()}>
                 <Ionicons style={styles.heart}name='heart' size={30}/> 
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
         <View style={styles.imageWrapper}>
             <Image

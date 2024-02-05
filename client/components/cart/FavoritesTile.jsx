@@ -64,7 +64,7 @@ const FavoriteTile = () => {
                 </View>
             ) : (
                 <FlatList
-                    data={favItems.products}
+                    data={favItems}
                     keyExtractor={(item) => item._id}
                     renderItem={({ item }) => (
                         <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('ProductDetails', {item})}>

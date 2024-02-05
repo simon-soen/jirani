@@ -133,7 +133,7 @@ const Profile = ( {navigation}) => {
 
           <View style={{backgroundColor:COLORS.primary}}>
             <View style={style.shopping}>
-              <TouchableOpacity onPress={() => navigation.navigate('Favorites') }>
+              {/* <TouchableOpacity onPress={() => navigation.navigate('Favorites') }>
                 <View style={style.ShopItem}>
                   <View style={[styles.iconContainer, {backgroundColor:COLORS.secondary}]}>
                     <MaterialCommunityIcons
@@ -146,7 +146,7 @@ const Profile = ( {navigation}) => {
                     </View>
                     <Text style={[style.shopText, {marginLeft:1}]}>Favorites</Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               <TouchableOpacity onPress={() => navigation.navigate('Cart') }>
                 <View style={style.ShopItem}>
