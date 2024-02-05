@@ -55,7 +55,7 @@ const validationSchema = Yup.object().shape({
 
     try{
         const SERVER = process.env.SERVER_URL
-        const endpoint ="${SERVER}/api/register";
+        const endpoint =`${SERVER}/api/register`;
         const data = values;
 
         const response = await axios.post(endpoint, data);
