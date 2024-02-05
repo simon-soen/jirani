@@ -101,7 +101,7 @@ const OrderTile = () => {
             <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('ProductDetails', { item })}>
               <View style={styles.image}>
                 <Image source={{
-                  uri: `/${item.productId ? item.productId.imageUrl : item.imageUrl}`,
+                  uri: `${item.productId ? item.productId.imageUrl : item.imageUrl}`,
                 }}
                   style={styles.productImg}
                 />
