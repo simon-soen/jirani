@@ -207,7 +207,7 @@ const Profile = ( {navigation}) => {
                         size={24}
                         color={COLORS.primary}
                       />
-                      <Text style={style.menuText}>Contact : </Text>
+                      <Text style={style.menuText}>Contact : {userData ? userData.phoneNo :""}</Text>
                     </View>
                   </TouchableOpacity>
 
